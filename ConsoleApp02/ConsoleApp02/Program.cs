@@ -8,7 +8,6 @@ namespace ConsoleApp02
         static void Main(string[] args)
         {
             Random rnd = new Random();
-            //int rval = rnd.Next(1,6);
             string[] names = new string[8] { "john", "beth", "london", "jane", "windsor", "elise", "ann", "harold" };
 
             myObj[] mos = new myObj[names.Length]; 
@@ -18,9 +17,18 @@ namespace ConsoleApp02
                 mos[i] = new myObj(Convert.ToString(rnd.Next(1, names.Length)), util.CapFirstLetter(names[i]));
             }
 
+            int cnt = 0;            
             foreach(var o in mos.OrderBy(x => x.dtstamp))
             {
-                Console.WriteLine($"{o.dtstamp} {o.name}");
+                if(cnt == 0)
+                {
+                    Console.WriteLine($"{o.dtstamp} {o.name}");
+                }
+                if(cnt == mos.Length - 1)
+                {
+                    Console.WriteLine($"{o.dtstamp} {o.name}");
+                }
+                cnt++;
             }
         }
     }
