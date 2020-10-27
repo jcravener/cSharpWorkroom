@@ -68,6 +68,8 @@ namespace CosmosDbConsole
             await this.QueryItemsAsync("Andersen");
             Console.WriteLine();
             await this.QueryItemsAsync("Wakefield");
+            Console.WriteLine();
+            await this.ReplaceFamilyItemAsync("Andersen.1", "Andersen", "Roslyn");
         }
 
         private async Task CreateDatabaseAsync()
@@ -116,6 +118,18 @@ namespace CosmosDbConsole
                     Console.WriteLine(family);
                 }
             }
+        }
+
+        private async Task ReplaceFamilyItemAsync(string itemId, string lastName, string newCity)
+        {
+            ItemResponse<Family> familyItemResponse = await this.container.ReadItemAsync<Family>(itemId, new PartitionKey(lastName));
+            var itemBody = familyItemResponse.Resource;
+
+            string oldCity = itemBody.Address.City;
+            itemBody.Address.City = newCity;
+
+            familyItemResponse = await this.container.ReplaceItemAsync<Family>(itemBody, itemBody.Id, new PartitionKey(itemBody.LastName));
+            Console.WriteLine($"Updated family {lastName}'s city from {oldCity} to {itemBody.Address.City}.");
         }
         private static Family CreateAndersenItem()
         {
