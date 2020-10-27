@@ -40,7 +40,7 @@ namespace CosmosDbConsole
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine("Eror: {ex}");
+                Console.Error.WriteLine($"Eror: {ex}");
             }
             finally
             {
@@ -64,6 +64,10 @@ namespace CosmosDbConsole
             Console.WriteLine();
             await this.AddItemToContainerAsync(CreateAndersenItem());
             await this.AddItemToContainerAsync(CreateWakefieldItem());
+            Console.WriteLine();
+            await this.QueryItemsAsync("Andersen");
+            Console.WriteLine();
+            await this.QueryItemsAsync("Wakefield");
         }
 
         private async Task CreateDatabaseAsync()
@@ -92,6 +96,27 @@ namespace CosmosDbConsole
             }
         }
 
+        private async Task QueryItemsAsync(string lastName)
+        {
+            var sqlQueryText = $"SELECT * from c WHERE c.LastName = '{lastName}'";
+
+            Console.WriteLine($"Running query: {sqlQueryText}\n");
+
+            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
+            FeedIterator<Family> queryResultSetIterator = this.container.GetItemQueryIterator<Family>(queryDefinition);
+
+            List<Family> families = new List<Family>();
+
+            while (queryResultSetIterator.HasMoreResults)
+            {
+                FeedResponse<Family> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                foreach (Family family in currentResultSet)
+                {
+                    families.Add(family);
+                    Console.WriteLine(family);
+                }
+            }
+        }
         private static Family CreateAndersenItem()
         {
             Family Item = new Family()
@@ -122,7 +147,7 @@ namespace CosmosDbConsole
 
             return Item;
         }
-        private static Family CreateWakefieldItem()  
+        private static Family CreateWakefieldItem()
         {
             Family Item = new Family()
             {
