@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Net;
 using Microsoft.Azure.Cosmos;
 
+// This code is based on the CosmosDB tutorial located here: https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started
+
 namespace CosmosDbConsole
 {
     class Program
