@@ -64,12 +64,15 @@ namespace CosmosDbConsole
             Console.WriteLine();
             await this.AddItemToContainerAsync(CreateAndersenItem());
             await this.AddItemToContainerAsync(CreateWakefieldItem());
+            await this.AddItemToContainerAsync(CreateSmithItem());
             Console.WriteLine();
             await this.QueryItemsAsync("Andersen");
             Console.WriteLine();
             await this.QueryItemsAsync("Wakefield");
             Console.WriteLine();
             await this.ReplaceFamilyItemAsync("Andersen.1", "Andersen", "Roslyn");
+            Console.WriteLine();
+            await this.DeleteFamilyItemAsync("Smith.1", "Smith");
         }
 
         private async Task CreateDatabaseAsync()
@@ -131,6 +134,13 @@ namespace CosmosDbConsole
             familyItemResponse = await this.container.ReplaceItemAsync<Family>(itemBody, itemBody.Id, new PartitionKey(itemBody.LastName));
             Console.WriteLine($"Updated family {lastName}'s city from {oldCity} to {itemBody.Address.City}.");
         }
+
+        private async Task DeleteFamilyItemAsync(string itemId, string lastName)
+        {
+            ItemResponse<Family> itemResponse = await this.container.DeleteItemAsync<Family>(itemId, new PartitionKey(lastName));
+            Console.WriteLine($"Deleted family with ID {itemId}");
+        }
+
         private static Family CreateAndersenItem()
         {
             Family Item = new Family()
@@ -192,5 +202,36 @@ namespace CosmosDbConsole
             return Item;
         }
 
+        private static Family CreateSmithItem()
+        {
+            Family Item = new Family()
+            {
+                Id = "Smith.1",
+                LastName = "Smith",
+                Parents = new Parent[]
+                {
+                    new Parent { FirstName = "Betty", FamilyName = "Smith"},
+                    new Parent { FirstName = "Larry"}
+                },
+                Children = new Child[]
+                {
+                    new Child
+                    {
+                        FirstName = "Rose",
+                        Gender = "female",
+                        Grade = 5,
+                        Pets = new Pet[]
+                        {
+                            new Pet { GivinName = "Sandle"}
+                        }
+                    }
+                },
+                Address = new Address { State = "WA", County = "Chellan", City = "Chellan" },
+                IsRegistered = true
+            };
+
+            return Item;
+        }
     }
 }
+
