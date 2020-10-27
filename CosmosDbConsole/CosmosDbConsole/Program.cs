@@ -73,6 +73,8 @@ namespace CosmosDbConsole
             await this.ReplaceFamilyItemAsync("Andersen.1", "Andersen", "Roslyn");
             Console.WriteLine();
             await this.DeleteFamilyItemAsync("Smith.1", "Smith");
+            Console.WriteLine();
+            await this.DeleteContainerAsync();
         }
 
         private async Task CreateDatabaseAsync()
@@ -171,6 +173,13 @@ namespace CosmosDbConsole
 
             return Item;
         }
+
+        private async Task DeleteContainerAsync()
+        {
+            ContainerResponse containerResponse = await this.container.DeleteContainerAsync();
+            Console.WriteLine($"Deleted container: {containerId}");
+        }
+
         private static Family CreateWakefieldItem()
         {
             Family Item = new Family()
