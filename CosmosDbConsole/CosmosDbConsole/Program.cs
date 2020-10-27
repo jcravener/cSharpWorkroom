@@ -26,6 +26,7 @@ namespace CosmosDbConsole
 
             Console.WriteLine($"EndpointUri: {EndpointUri} PrimaryKey: {PrimaryKey}");
 
+
             try
             {
                 Console.WriteLine("Beginning operations...\n");
@@ -54,12 +55,15 @@ namespace CosmosDbConsole
 
         private string databaseId = "FamilyDB";
         private string containerId = "FamilyContainer";
-    
+
         public async Task GetStartedDemoAsync(string ep, string pk)
         {
             this.cosmosClient = new CosmosClient(ep, pk);
             await this.CreateDatabaseAsync();
             await this.CreateContainerAsync();
+            Console.WriteLine();
+            await this.AddItemToContainerAsync(CreateAndersenItem());
+            await this.AddItemToContainerAsync(CreateWakefieldItem());
         }
 
         private async Task CreateDatabaseAsync()
@@ -73,5 +77,81 @@ namespace CosmosDbConsole
             this.container = await this.database.CreateContainerIfNotExistsAsync(containerId, "/LastName");
             Console.WriteLine($"Created container: {this.container.Id}");
         }
+
+        private async Task AddItemToContainerAsync(Family Item)
+        {
+            try
+            {
+                ItemResponse<Family> ItemResponse = await this.container.ReadItemAsync<Family>(Item.Id, new PartitionKey(Item.LastName));
+                Console.WriteLine($"Item with id {Item.Id} already exists. The opperation consumed {ItemResponse.RequestCharge} RUs.");
+            }
+            catch
+            {
+                ItemResponse<Family> ItemResponse = await this.container.CreateItemAsync<Family>(Item, new PartitionKey(Item.LastName));
+                Console.WriteLine($"Created new item in database with id {Item.Id}. The opperation consumed {ItemResponse.RequestCharge} RUs.");
+            }
+        }
+
+        private static Family CreateAndersenItem()
+        {
+            Family Item = new Family()
+            {
+                Id = "Andersen.1",
+                LastName = "Andersen",
+                Parents = new Parent[]
+                {
+                    new Parent { FamilyName = "Thopmas"},
+                    new Parent { FirstName = "Mary Kay"}
+                },
+                Children = new Child[]
+                {
+                    new Child
+                    {
+                        FirstName = "Henriette",
+                        Gender = "female",
+                        Grade = 5,
+                        Pets = new Pet[]
+                        {
+                            new Pet { GivinName = "Fuffy"}
+                        }
+                    }
+                },
+                Address = new Address { State = "WA", County = "King", City = "Redmond" },
+                IsRegistered = false
+            };
+
+            return Item;
+        }
+        private static Family CreateWakefieldItem()  
+        {
+            Family Item = new Family()
+            {
+                Id = "Wakefield.1",
+                LastName = "Wakefield",
+                Parents = new Parent[]
+                {
+                    new Parent { FirstName = "Beth", FamilyName = "Wakefield"},
+                    new Parent { FirstName = "Tim"}
+                },
+                Children = new Child[]
+                {
+                    new Child
+                    {
+                        FirstName = "Mary",
+                        Gender = "female",
+                        Grade = 4,
+                        Pets = new Pet[]
+                        {
+                            new Pet { GivinName = "Spot"}
+                        }
+                    }
+                },
+                Address = new Address { State = "WA", County = "King", City = "Bellevue" },
+                IsRegistered = true
+            };
+
+            return Item;
+        }
+
     }
 }
