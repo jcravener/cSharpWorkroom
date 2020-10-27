@@ -57,12 +57,19 @@ namespace CosmosDbConsole
         {
             this.cosmosClient = new CosmosClient(ep, pk);
             await this.CreateDatabaseAsync();
+            await this.CreateContainerAsync();
         }
 
         private async Task CreateDatabaseAsync()
         {
             this.database = await this.cosmosClient.CreateDatabaseIfNotExistsAsync(databaseId);
-            Console.WriteLine($"Created database: {databaseId}");
+            Console.WriteLine($"Created database: {this.database.Id}");
+        }
+
+        private async Task CreateContainerAsync()
+        {
+            this.container = await this.database.CreateContainerIfNotExistsAsync(containerId, "/LastName");
+            Console.WriteLine($"Created container: {this.container.Id}");
         }
     }
 }
