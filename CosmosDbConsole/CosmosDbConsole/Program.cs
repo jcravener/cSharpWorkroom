@@ -56,6 +56,13 @@ namespace CosmosDbConsole
         public async Task GetStartedDemoAsync(string ep, string pk)
         {
             this.cosmosClient = new CosmosClient(ep, pk);
+            await this.CreateDatabaseAsync();
+        }
+
+        private async Task CreateDatabaseAsync()
+        {
+            this.database = await this.cosmosClient.CreateDatabaseIfNotExistsAsync(databaseId);
+            Console.WriteLine($"Created database: {databaseId}");
         }
     }
 }
