@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.Cosmos;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -45,6 +46,7 @@ namespace CosmosDBClient
 
             List<DatabaseProperties> databaseProperties;
             List<ContainerProperties> containerProperties;
+            string json = null;
             if(args.Length == 1) // list databases
             {
                 try
@@ -52,10 +54,11 @@ namespace CosmosDBClient
                     databaseProperties = new List<DatabaseProperties>();
 
                     databaseProperties = await cosmosDbUtil.ListDatabases(cosmosClient);
-                    Console.WriteLine("DatabaseId");
-                    foreach(DatabaseProperties dbp in databaseProperties)
+                    //json = JsonConvert.SerializeObject(databaseProperties);
+                    //Console.WriteLine(json);
+                    foreach (DatabaseProperties dbp in databaseProperties)
                     {
-                        Console.WriteLine(dbp.Id);
+                        Console.WriteLine(JsonConvert.SerializeObject(dbp));
                     }
                 }
                 catch (CosmosException ce)
@@ -80,10 +83,12 @@ namespace CosmosDBClient
 
                     cosmosDatabase = cosmosClient.GetDatabase(args[1]);
                     containerProperties = await cosmosDbUtil.ListContainers(cosmosDatabase);
-                    Console.WriteLine("ContainerId,PartitionKeyPath");
-                    foreach(ContainerProperties cp in containerProperties)
+                    //json = JsonConvert.SerializeObject(containerProperties);
+                    //Console.WriteLine(json);
+                    //Console.WriteLine("ContainerId,PartitionKeyPath");
+                    foreach (ContainerProperties cp in containerProperties)
                     {
-                        Console.WriteLine($"{cp.Id},{cp.PartitionKeyPath}");
+                        Console.WriteLine(JsonConvert.SerializeObject(cp));
                     }
                 }
                 catch (CosmosException ce)
