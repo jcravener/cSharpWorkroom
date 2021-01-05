@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace CosmosDBClient
 {
@@ -34,11 +35,11 @@ namespace CosmosDBClient
         {
             List<DatabaseProperties> databaseProperties = new List<DatabaseProperties>();
 
-            using(FeedIterator<DatabaseProperties> iterator = cosmosClient.GetDatabaseQueryIterator<DatabaseProperties>())
+            using (FeedIterator<DatabaseProperties> iterator = cosmosClient.GetDatabaseQueryIterator<DatabaseProperties>())
             {
                 while (iterator.HasMoreResults)
                 {
-                    foreach( DatabaseProperties db in await iterator.ReadNextAsync())
+                    foreach (DatabaseProperties db in await iterator.ReadNextAsync())
                     {
                         databaseProperties.Add(db);
                     }
@@ -55,13 +56,36 @@ namespace CosmosDBClient
             {
                 while (iterator.HasMoreResults)
                 {
-                    foreach(ContainerProperties container in await iterator.ReadNextAsync())
+                    foreach (ContainerProperties container in await iterator.ReadNextAsync())
                     {
                         containerProperties.Add(container);
                     }
                 }
             }
             return containerProperties;
+        }
+
+        public async Task<List<DocumentId>> ListDocumentIds(Database cosmosDB, String containerId)
+        {
+            List<DocumentId> documentIds = new List<DocumentId>();
+            Container container = cosmosDB.GetContainer(containerId);
+            
+            var sqlQueryText = $"SELECT c.id, c._etag, c._ts FROM c";
+            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
+            
+            using (FeedIterator<DocumentId> queryResultSetIterator = container.GetItemQueryIterator<DocumentId>(queryDefinition))
+            {
+                while (queryResultSetIterator.HasMoreResults)
+                {
+                    FeedResponse<DocumentId> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                    foreach(DocumentId documentId in currentResultSet)
+                    {
+                        documentIds.Add(documentId);
+                    }
+                }
+            }
+
+            return documentIds;
         }
     }
 
@@ -70,4 +94,15 @@ namespace CosmosDBClient
         public string AccountKey { get; set; }
         public string AccountEndpoint { get; set; }
     }
+
+    class DocumentId
+    {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+        [JsonProperty(PropertyName = "_etag")]
+        public string Etag { get; set; }
+        [JsonProperty(PropertyName = "_ts")]
+        public double Ts { get; set; }
+    }
+
 }

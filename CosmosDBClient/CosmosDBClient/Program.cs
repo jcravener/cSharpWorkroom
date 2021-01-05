@@ -22,8 +22,8 @@ namespace CosmosDBClient
             CosmosClient cosmosClient = null;
             Database cosmosDatabase;
             CosmosDbUtil cosmosDbUtil = new CosmosDbUtil();
-            CosmosConn cosmosConn;            
-            
+            CosmosConn cosmosConn;
+
             try
             {
                 cosmosConn = cosmosDbUtil.ParseCosmosConnStr(connStr);
@@ -46,8 +46,9 @@ namespace CosmosDBClient
 
             List<DatabaseProperties> databaseProperties;
             List<ContainerProperties> containerProperties;
-            string json = null;
-            if(args.Length == 1) // list databases
+            List<DocumentId> documentIds;
+            //string json = null;
+            if (args.Length == 1) // list databases
             {
                 try
                 {
@@ -75,7 +76,7 @@ namespace CosmosDBClient
                     Console.ResetColor();
                 }
             }
-            else if(args.Length == 2) // list containers
+            else if (args.Length == 2) // list containers
             {
                 try
                 {
@@ -83,9 +84,6 @@ namespace CosmosDBClient
 
                     cosmosDatabase = cosmosClient.GetDatabase(args[1]);
                     containerProperties = await cosmosDbUtil.ListContainers(cosmosDatabase);
-                    //json = JsonConvert.SerializeObject(containerProperties);
-                    //Console.WriteLine(json);
-                    //Console.WriteLine("ContainerId,PartitionKeyPath");
                     foreach (ContainerProperties cp in containerProperties)
                     {
                         Console.WriteLine(JsonConvert.SerializeObject(cp));
@@ -94,7 +92,7 @@ namespace CosmosDBClient
                 catch (CosmosException ce)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Error.WriteLine($"Had problems listing CosmosDB containers in {args[1]}.");
+                    Console.Error.WriteLine($"Had problems listing CosmosDB containers in {args[2]}.");
                     Console.Error.WriteLine(ce.ToString());
                     Environment.Exit(0);
                 }
@@ -104,8 +102,35 @@ namespace CosmosDBClient
                     Console.Error.WriteLine(ex.Message);
                     Console.ResetColor();
                 }
-
             }
+            else if (args.Length == 3) // List doc ids from container
+            {
+                try
+                {
+                    documentIds = new List<DocumentId>();
+                    cosmosDatabase = cosmosClient.GetDatabase(args[1]);
+
+                    documentIds = await cosmosDbUtil.ListDocumentIds(cosmosDatabase, args[2]);
+                    foreach (DocumentId documentId in documentIds)
+                    {
+                        Console.WriteLine(JsonConvert.SerializeObject(documentId));
+                    }
+                }
+                catch (CosmosException ce)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine($"Had problems listing Ids in container {args[1]}.");
+                    Console.Error.WriteLine(ce.ToString());
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine(ex.Message);
+                    Console.ResetColor();
+                }
+            }
+
         }
     }
 }
