@@ -87,6 +87,37 @@ namespace CosmosDBClient
 
             return documentIds;
         }
+
+        public async Task<dynamic> GetDocumentByQuery(Database cosmosDB, String containerId, String documentId)
+        {
+            dynamic document = null;
+            Container container = cosmosDB.GetContainer(containerId);
+
+            var sqlQueryText = $"SELECT * FROM c WHERE c.id = \"{documentId}\"";
+            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
+
+            using (FeedIterator<dynamic> queryResultSetIterator = container.GetItemQueryIterator<dynamic>(queryDefinition))
+            {
+                while (queryResultSetIterator.HasMoreResults)
+                {
+                    FeedResponse<dynamic> currentResultSet = await queryResultSetIterator.ReadNextAsync();
+                    foreach(dynamic doc in currentResultSet)
+                    {
+                        //document = doc;
+                        return doc;
+                    }
+                }
+            }
+            return document;
+        }
+
+        public async Task<dynamic> GetDocument(Database cosmosDB, String containerId, String documentId, String partitionKey)
+        {
+            Container container = cosmosDB.GetContainer(containerId);
+
+            dynamic doc = await container.ReadItemAsync<dynamic>(documentId, new PartitionKey(partitionKey));
+            return doc;
+        }
     }
 
     class CosmosConn

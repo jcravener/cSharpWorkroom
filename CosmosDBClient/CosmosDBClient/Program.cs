@@ -55,8 +55,6 @@ namespace CosmosDBClient
                     databaseProperties = new List<DatabaseProperties>();
 
                     databaseProperties = await cosmosDbUtil.ListDatabases(cosmosClient);
-                    //json = JsonConvert.SerializeObject(databaseProperties);
-                    //Console.WriteLine(json);
                     foreach (DatabaseProperties dbp in databaseProperties)
                     {
                         Console.WriteLine(JsonConvert.SerializeObject(dbp));
@@ -93,7 +91,7 @@ namespace CosmosDBClient
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Error.WriteLine($"Had problems listing CosmosDB containers in {args[2]}.");
-                    Console.Error.WriteLine(ce.ToString());
+                    Console.Error.WriteLine(ce.Message);
                     Environment.Exit(0);
                 }
                 catch (Exception ex)
@@ -120,7 +118,8 @@ namespace CosmosDBClient
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Error.WriteLine($"Had problems listing Ids in container {args[1]}.");
-                    Console.Error.WriteLine(ce.ToString());
+                    Console.Error.WriteLine(ce.Message);
+                    Console.ResetColor();
                     Environment.Exit(0);
                 }
                 catch (Exception ex)
@@ -130,7 +129,57 @@ namespace CosmosDBClient
                     Console.ResetColor();
                 }
             }
+            else if (args.Length == 4) // Query for specific doc using Id only
+            {
+                try
+                {
+                    dynamic document = null;
+                    cosmosDatabase = cosmosClient.GetDatabase(args[1]);
 
+                    document = await cosmosDbUtil.GetDocumentByQuery(cosmosDatabase, args[2], args[3]);
+                    Console.WriteLine(JsonConvert.SerializeObject(document));
+                }
+                catch (CosmosException ce)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine($"Had problems getting doc Id {args[3]}.");
+                    Console.Error.WriteLine(ce.Message);
+                    Console.ResetColor();
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine(ex.Message);
+                    Console.ResetColor();
+                }
+            }
+            else if (args.Length == 5) // Get doc by ID and Part Key
+            {
+                try
+                {
+                    dynamic document = null;
+                    cosmosDatabase = cosmosClient.GetDatabase(args[1]);
+
+                    document = await cosmosDbUtil.GetDocument(cosmosDatabase, args[2], args[3], args[4]);
+                    Console.WriteLine(JsonConvert.SerializeObject(document));
+                }
+                catch (CosmosException ce)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine($"Had problems getting doc Id {args[3]} with partition key {args[4]}.");
+                    Console.Error.WriteLine(ce.Message);
+                    Console.ResetColor();
+                    Environment.Exit(0);
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Error.WriteLine(ex.Message);
+                    Console.ResetColor();
+                }
+
+            }
         }
     }
 }
