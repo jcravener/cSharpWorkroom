@@ -20,7 +20,7 @@ namespace ParseYaml
             Regex pat = new Regex(@"^\-[yj]");
             Match m = pat.Match(args[0]);
 
-            String txt;
+            String txt = null;
             String output;
 
             if (m.Success)
@@ -31,7 +31,8 @@ namespace ParseYaml
                 }
                 catch(Exception ex)
                 {
-                    throw new Exception($"Had a problem reading file: {args[1]}");
+                    Console.Error.WriteLine(ex.Message.ToString());
+                    Environment.Exit(1);
                 }
                 
                 var reader = new StringReader(txt);
