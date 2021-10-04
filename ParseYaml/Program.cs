@@ -43,7 +43,7 @@ namespace ParseYaml
                 }
                 else
                 {
-                    output = Convert.toYaml(txt);
+                    output = Convert.ToYaml(txt);
                     Console.Write(output);
                 }
             }

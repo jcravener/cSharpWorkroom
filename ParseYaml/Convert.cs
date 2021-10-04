@@ -24,7 +24,7 @@ namespace ParseYaml
             return json;
         }
 
-        public static String toYaml(String Txt)
+        public static String ToYaml(String Txt)
         {
             dynamic obj = JsonConvert.DeserializeObject<ExpandoObject>(Txt);
 
