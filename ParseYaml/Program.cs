@@ -9,9 +9,9 @@ namespace ParseYaml
     {
         static void Main(string[] args)
         {
-            String usage = $"usage: {System.AppDomain.CurrentDomain.FriendlyName} -y /path/to/yaml/file | -j /path/to/yaml/file";
+            String usage = $"usage: {System.AppDomain.CurrentDomain.FriendlyName} -y /path/to/yaml/file | -j /path/to/json/file";
 
-            if (args.Length < 2 )
+            if (args.Length < 2)
             {
                 Console.Error.Write(usage);
                 Environment.Exit(1);
@@ -24,28 +24,47 @@ namespace ParseYaml
             String output;
 
             if (m.Success)
-            {                
+            {
                 try
                 {
                     txt = File.ReadAllText($@"{args[1]}");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.Error.WriteLine(ex.Message.ToString());
                     Environment.Exit(1);
                 }
-                
+
                 var reader = new StringReader(txt);
 
                 if (args[0].Equals("-y"))
                 {
-                    output = Convert.ToJson(reader);
-                    Console.Write(output);
+
+                    try
+                    {
+                        output = Convert.ToJson(reader);
+                        Console.Write(output);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Error.WriteLine($"Error while attempting to convert yaml file {args[1]}");
+                        Console.Error.WriteLine(ex.Message.ToString());
+                        Environment.Exit(1);
+                    }
                 }
                 else
                 {
-                    output = Convert.ToYaml(txt);
-                    Console.Write(output);
+                    try
+                    {
+                        output = Convert.ToYaml(txt);
+                        Console.Write(output);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Error.WriteLine($"Error while attempting to convert json file {args[1]}");
+                        Console.Error.WriteLine(ex.Message.ToString());
+                        Environment.Exit(1);
+                    }
                 }
             }
             else
