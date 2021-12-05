@@ -11,37 +11,74 @@ namespace ValidParentheses
             if (args.Length == 0)
             {
                 Console.WriteLine("Input not provided.");
-                [System.Environment.Exit(1);
+                System.Environment.Exit(1);
             }
 
             string s = args[0];
+
+            Console.WriteLine(IsValid(s).ToString());
+        }
+
+        public static char GetParenType(char p)
+        {
+
+            if (p.Equals('(') || p.Equals(')'))
+            {
+                return 'p';
+            }
+            if (p.Equals('[') || p.Equals(']'))
+            {
+                return 's';
+            }
+            if (p.Equals('{') || p.Equals('}'))
+            {
+                return 'c';
+            }
+
+            return '0';
+        }
+
+        public static bool IsClosed(char c)
+        {
+            
+            if(c.Equals(')') || c.Equals(']') || c.Equals('}'))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public static bool IsValid(string s)
         {
-            Dictionary<string, int> map = new Dictionary<string, int>()
+            if (s.Length % 2 != 0 || IsClosed(s[0]) || (! IsClosed(s[^1])))
             {
-                { "paren", 0},
-                { "square", 0},
-                { "curly", 0}
-            };
+                return false;
+            }
 
-
-
-            Regex parenRx = new Regex(@"[\(\)]", RegexOptions.Compiled);
-            Regex squareRx = new Regex(@"[\[\]]", RegexOptions.Compiled);
-            Regex curlyRx = new Regex(@"[\{\}]", RegexOptions.Compiled);
+            Stack<char> stk = new Stack<char>();
 
             foreach(char c in s)
             {
-                if( c.Equals('(') || c.Equals(')'))
+                if(IsClosed(c))
+                {                    
+                    if( stk.Count == 0 || ( !GetParenType(stk.Pop()).Equals(GetParenType(c)) ) )
+                    {
+                        return false;
+                    }
+                }
+                else
                 {
-                    map["paren"] += 1
+                    stk.Push(c);
                 }
             }
 
-            
-            return false;
+            if(stk.Count > 0)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
