@@ -10,5 +10,8 @@ namespace GamesFunction.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int CourseHandicap { get; set; }
+        public int GrossScoreTotal { get; set; }
+        public int NetScoreTotal { get; set; }
+        public int[] NetScore { get; set; }
     }
 }
