@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using GamesFunction.Models;
 using GamesFunction.Helpers;
+using System.Web.Http;
 
 namespace GamesFunction
 {
@@ -22,7 +23,18 @@ namespace GamesFunction
             log.LogInformation("C# HTTP trigger Aldarra function endpoint processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var player = JsonConvert.DeserializeObject<Player>(requestBody);
+            Player player;
+
+            try
+            {
+                player = JsonConvert.DeserializeObject<Player>(requestBody);
+            }
+            catch(Exception e)
+            {
+                var errorObjectResult = new ObjectResult(e.Message);
+                errorObjectResult.StatusCode = StatusCodes.Status500InternalServerError;
+                return errorObjectResult;
+            }
 
             var response = new Response();
             var playerResponse = response.GetPlayerResponse(player);

@@ -8,6 +8,7 @@ namespace GamesFunction.Models
 {
     public class Player : Golfer
     {
+        [JsonProperty(PropertyName = "teamName", Required = Required.Always)]
         public TeamName Team { get; set; }
         public DateTime Date { get; set; }
         public string CourseName { get; set; }
