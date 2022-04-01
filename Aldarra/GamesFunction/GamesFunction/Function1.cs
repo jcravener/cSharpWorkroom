@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using GamesFunction.Models;
 using GamesFunction.Helpers;
 using System.Web.Http;
+using System.Collections.Generic;
 
 namespace GamesFunction
 {
@@ -23,11 +24,11 @@ namespace GamesFunction
             log.LogInformation("C# HTTP trigger Aldarra function endpoint processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            Player player;
+            List<Player> players;
 
             try
             {
-                player = JsonConvert.DeserializeObject<Player>(requestBody);
+                players = JsonConvert.DeserializeObject<List<Player>>(requestBody);
             }
             catch(Exception e)
             {
@@ -36,15 +37,14 @@ namespace GamesFunction
                 return errorObjectResult;
             }
 
-            var response = new Response();
-            var playerResponse = response.GetPlayerResponse(player);
+            List<PlayerCard> playerCards = new List<PlayerCard>();
 
-            var responseMessage = JsonConvert.SerializeObject(playerResponse);
+            foreach( var player in players )
+            {
+                playerCards.Add(new PlayerCard(player));
+            }
 
-            //string responseMessage = string.IsNullOrEmpty(name)
-            //    ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-            //    : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
+            var responseMessage = JsonConvert.SerializeObject(playerCards);
             return new OkObjectResult(responseMessage);
         }
     }
