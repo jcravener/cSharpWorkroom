@@ -24,8 +24,13 @@ namespace GamesFunction
             log.LogInformation("C# HTTP trigger Aldarra function endpoint processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            List<Player> players;
+            
+            Utility util = new Utility();
+            var teams = "ABCD";
+            var allMAtches = util.GetAllPairs(teams);
 
+
+            List<Player> players;
             try
             {
                 players = JsonConvert.DeserializeObject<List<Player>>(requestBody);
