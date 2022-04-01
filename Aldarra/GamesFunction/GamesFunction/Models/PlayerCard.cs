@@ -12,6 +12,7 @@ namespace GamesFunction.Models
         public PlayerCard(Player player)
         {
             TeamName = player.Team.ToString();
+            EmailAddress = player.Email;
             First = player.FirstName;
             Last = player.LastName;
             CourseHandicap = GetCourseHandicap(player.HandicapIndex, player.Gender, player.TeeBoxName);
@@ -22,6 +23,7 @@ namespace GamesFunction.Models
         }
 
         public string TeamName { get; set; }
+        public string EmailAddress { get; set; }
         public string First { get; set; }
         public string Last { get; set; }
         public int CourseHandicap { get; set; }

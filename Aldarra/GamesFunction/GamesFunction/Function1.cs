@@ -27,8 +27,7 @@ namespace GamesFunction
             
             Utility util = new Utility();
             var teams = "ABCD";
-            var allMAtches = util.GetAllPairs(teams);
-
+            var allMatches = util.GetAllPairs(teams);
 
             List<Player> players;
             try
@@ -48,6 +47,8 @@ namespace GamesFunction
             {
                 playerCards.Add(new PlayerCard(player));
             }
+
+            var team = new Team("A", playerCards);
 
             var responseMessage = JsonConvert.SerializeObject(playerCards);
             return new OkObjectResult(responseMessage);
