@@ -16,12 +16,12 @@ namespace GamesFunction
 {
     public static class Function1
     {
-        [FunctionName("Player")]
-        public static async Task<IActionResult> Run(
+        [FunctionName("Players")]
+        public static async Task<IActionResult> Players(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger Aldarra function endpoint processed a request.");
+            log.LogInformation("C# HTTP trigger Aldarra/Players endpoint processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             
@@ -51,6 +51,32 @@ namespace GamesFunction
             var team = new Team("A", playerCards);
 
             var responseMessage = JsonConvert.SerializeObject(playerCards);
+            return new OkObjectResult(responseMessage);
+        }
+
+        [FunctionName("Golfers")]
+        public static async Task<IActionResult> Golfers(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger Aldarra/Golfers endpoint processed a request.");
+
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+
+
+            List<Golfer> golfers;
+            try
+            {
+                golfers = JsonConvert.DeserializeObject<List<Golfer>>(requestBody);
+            }
+            catch (Exception e)
+            {
+                var errorObjectResult = new ObjectResult(e.Message);
+                errorObjectResult.StatusCode = StatusCodes.Status500InternalServerError;
+                return errorObjectResult;
+            }
+
+            var responseMessage = JsonConvert.SerializeObject(golfers);
             return new OkObjectResult(responseMessage);
         }
     }

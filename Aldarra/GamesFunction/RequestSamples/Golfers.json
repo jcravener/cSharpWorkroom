@@ -1,0 +1,30 @@
+[
+  {
+    "email": "jcravener@hotmail.com",
+    "firstName": "John",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 8.0
+  },
+  {
+    "email": "harold@hotmail.com",
+    "firstName": "Harold",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 5.9
+  },
+  {
+    "email": "beth@hotmail.com",
+    "firstName": "Beth",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 10
+  },
+  {
+    "email": "london@hotmail.com",
+    "firstName": "London",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 9
+  }
+]

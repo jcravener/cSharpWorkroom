@@ -1,0 +1,50 @@
+[
+    {
+    "email": "jcravener@hotmail.com",
+    "firstName": "John",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 8.0,
+    "teamName": "A",
+    "date": "Wednesday, March 30, 2022",
+    "courseName": "Aldarra",
+    "teeBoxName": "Member",
+    "grossScore": [4,4,6,4,5,3,6,6,9,5,5,5,4,5,4,5,4,5]
+    }, 
+    {
+    "email": "harold@hotmail.com",
+    "firstName": "Harold",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 5.9,
+    "teamName": "A",
+    "date": "Wednesday, March 30, 2022",
+    "courseName": "Aldarra",
+    "teeBoxName": "Member",
+    "grossScore": [5,3,6,4,4,3,6,7,9,5,4,5,4,5,3,5,4,5]
+    }, 
+    {
+    "email": "beth@hotmail.com",
+    "firstName": "Beth",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 10,
+    "teamName": "A",
+    "date": "Wednesday, March 30, 2022",
+    "courseName": "Aldarra",
+    "teeBoxName": "Member",
+    "grossScore": [6,4,7,5,5,4,7,8,9,5,4,5,4,5,3,5,4,6]
+    }, 
+    {
+    "email": "london@hotmail.com",
+    "firstName": "London",
+    "lastName": "Cravener",
+    "gender": "Male",
+    "handicapIndex": 9,
+    "teamName": "A",
+    "date": "Wednesday, March 30, 2022",
+    "courseName": "Aldarra",
+    "teeBoxName": "Member",
+    "grossScore": [5,4,5,5,4,4,6,8,9,5,4,5,4,5,3,6,5,6]
+    } 
+]
