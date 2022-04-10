@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GamesFunction.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace GamesFunction.Helpers
@@ -39,6 +41,14 @@ namespace GamesFunction.Helpers
             }
 
             return vs;
+        }
+
+        public List<string> GetTeamNames(List<PlayerCard> playerCards)
+        {
+            var results = from PlayerCard in playerCards
+                          select PlayerCard.TeamName;
+
+            return results.Distinct().ToList();
         }
     }
 }
