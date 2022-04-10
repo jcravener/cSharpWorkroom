@@ -25,10 +25,6 @@ namespace GamesFunction
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             
-            Utility util = new Utility();
-            var teamNames = "ABCD";
-            var allMatches = util.GetAllPairs(teamNames);
-
             List<Player> players;
             try
             {
@@ -48,14 +44,17 @@ namespace GamesFunction
                 playerCards.Add(new PlayerCard(player));
             }
 
-            var uniqueTeamNames = util.GetTeamNames(playerCards);
+            Utility util = new Utility();
 
+            var uniqueTeamNames = util.GetTeamNames(playerCards);
             List<Team> teams = new List<Team>();
 
             foreach(var teamName in uniqueTeamNames)
             {
                 teams.Add(new Team(teamName, playerCards));
             }
+
+            var allMatches = util.GetAllPairs(uniqueTeamNames);
 
             var responseMessage = JsonConvert.SerializeObject(teams);
             //var responseMessage = JsonConvert.SerializeObject(playerCards);

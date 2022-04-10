@@ -8,15 +8,15 @@ namespace GamesFunction.Helpers
 {
     public class Utility
     {
-        public List<string> GetAllPairs(string teams)
+        public List<string> GetAllPairs(List<string> teams)
         {
             StringBuilder sb = new StringBuilder();
 
             List<string> vs = new List<string>();
 
-            foreach(char c in teams)
+            foreach(string c in teams)
             {                
-                foreach(char cc in teams)
+                foreach(string cc in teams)
                 {
                     sb.Clear();
                     sb.Append(c);
