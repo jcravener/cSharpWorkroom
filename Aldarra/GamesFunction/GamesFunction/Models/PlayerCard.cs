@@ -22,14 +22,27 @@ namespace GamesFunction.Models
             NetTotal = NetScores.Sum();
         }
 
+        public PlayerCard()
+        {
+        }
+
+        [JsonProperty(PropertyName = "teamName", Required = Required.Always)]
         public string TeamName { get; set; }
+        [JsonProperty(PropertyName = "emailAddress", Required = Required.Always)]
         public string EmailAddress { get; set; }
+        [JsonProperty(PropertyName = "first", Required = Required.Always)]
         public string First { get; set; }
+        [JsonProperty(PropertyName = "last", Required = Required.Always)]
         public string Last { get; set; }
+        [JsonProperty(PropertyName = "courseHandicap", Required = Required.Always)]
         public int CourseHandicap { get; set; }
+        [JsonProperty(PropertyName = "grossScores", Required = Required.Always)]
         public int[] GrossScores { get; set; }
+        [JsonProperty(PropertyName = "netScores", Required = Required.Always)]
         public int[] NetScores { get; set; }
+        [JsonProperty(PropertyName = "grossTotal", Required = Required.Always)]
         public int GrossTotal { get; set; }
+        [JsonProperty(PropertyName = "netTotal", Required = Required.Always)]
         public int NetTotal { get; set; }
 
         private int GetCourseHandicap(double handicapIndex, Gender gender, string teeBoxName)

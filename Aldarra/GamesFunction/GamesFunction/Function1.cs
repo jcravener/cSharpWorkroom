@@ -16,8 +16,33 @@ namespace GamesFunction
 {
     public static class Function1
     {
-        [FunctionName("Players")]
-        public static async Task<IActionResult> Players(
+        [FunctionName("Golfers")]
+        public static async Task<IActionResult> Golfers(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger Aldarra/Golfers endpoint processed a request.");
+
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+
+            List<Golfer> golfers;
+            try
+            {
+                golfers = JsonConvert.DeserializeObject<List<Golfer>>(requestBody);
+            }
+            catch (Exception e)
+            {
+                var errorObjectResult = new ObjectResult(e.Message);
+                errorObjectResult.StatusCode = StatusCodes.Status500InternalServerError;
+                return errorObjectResult;
+            }
+
+            var responseMessage = JsonConvert.SerializeObject(golfers);
+            return new OkObjectResult(responseMessage);
+        }
+
+        [FunctionName("PlayerCards")]
+        public static async Task<IActionResult> PlayerCards(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -39,42 +64,28 @@ namespace GamesFunction
 
             List<PlayerCard> playerCards = new List<PlayerCard>();
 
-            foreach( var player in players )
+            foreach(var player in players)
             {
                 playerCards.Add(new PlayerCard(player));
             }
 
-            Utility util = new Utility();
-
-            var uniqueTeamNames = util.GetTeamNames(playerCards);
-            List<Team> teams = new List<Team>();
-
-            foreach(var teamName in uniqueTeamNames)
-            {
-                teams.Add(new Team(teamName, playerCards));
-            }
-
-            var allMatches = util.GetAllPairs(uniqueTeamNames);
-
-            var responseMessage = JsonConvert.SerializeObject(teams);
-            //var responseMessage = JsonConvert.SerializeObject(playerCards);
+            var responseMessage = JsonConvert.SerializeObject(playerCards);
             return new OkObjectResult(responseMessage);
         }
-
-        [FunctionName("Golfers")]
-        public static async Task<IActionResult> Golfers(
+        
+        [FunctionName("TeamResults")]
+        public static async Task<IActionResult> TeamResults(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger Aldarra/Golfers endpoint processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-
-
-            List<Golfer> golfers;
+            
+            List<PlayerCard> playerCards;
             try
             {
-                golfers = JsonConvert.DeserializeObject<List<Golfer>>(requestBody);
+                playerCards = JsonConvert.DeserializeObject<List<PlayerCard>>(requestBody);
             }
             catch (Exception e)
             {
@@ -83,7 +94,19 @@ namespace GamesFunction
                 return errorObjectResult;
             }
 
-            var responseMessage = JsonConvert.SerializeObject(golfers);
+            Utility util = new Utility();
+
+            var uniqueTeamNames = util.GetTeamNames(playerCards);
+            List<Team> teams = new List<Team>();
+
+            foreach (var teamName in uniqueTeamNames)
+            {
+                teams.Add(new Team(teamName, playerCards));
+            }
+
+            var allMatches = util.GetAllPairs(uniqueTeamNames);
+
+            var responseMessage = JsonConvert.SerializeObject(teams);
             return new OkObjectResult(responseMessage);
         }
     }
