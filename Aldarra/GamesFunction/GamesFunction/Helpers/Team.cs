@@ -18,7 +18,10 @@ namespace GamesFunction.Helpers
         public string Name { get; set; }
         private Dictionary<string, Scores> PlayerScores { get; set; } = new Dictionary<string, Scores>();
         public List<int> TeamScores { get; private set; } = new List<int>();
+        
+        public Dictionary<string, GameResult> MatchResult { get; set; }
         private int HoleCount { get; set;  }
+
 
         private void BindPlayerScores(List<PlayerCard> playerCards)
         {            

@@ -78,7 +78,7 @@ namespace GamesFunction
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger Aldarra/Golfers endpoint processed a request.");
+            log.LogInformation("C# HTTP trigger Aldarra/TeamResults endpoint processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             
@@ -106,7 +106,14 @@ namespace GamesFunction
 
             var allMatches = util.GetAllPairs(uniqueTeamNames);
 
-            var responseMessage = JsonConvert.SerializeObject(teams);
+            //TeamResults teamResults = new TeamResults { Teams = teams, Matches = allMatches };
+            TeamResults teamResults = new TeamResults(
+                teams,
+                allMatches,
+                log
+                );
+
+            var responseMessage = JsonConvert.SerializeObject(teamResults);
             return new OkObjectResult(responseMessage);
         }
     }
