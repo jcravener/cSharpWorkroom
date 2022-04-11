@@ -1,11 +1,11 @@
 [
   {
-    "TeamName": "A",
-    "EmailAddress": "jcravener@hotmail.com",
-    "First": "John",
-    "Last": "Cravener",
-    "CourseHandicap": 9,
-    "GrossScores": [
+    "teamName": "A",
+    "emailAddress": "jcravener@hotmail.com",
+    "first": "John",
+    "last": "Cravener",
+    "courseHandicap": 9,
+    "grossScores": [
       4,
       4,
       6,
@@ -25,7 +25,7 @@
       4,
       5
     ],
-    "NetScores": [
+    "netScores": [
       3,
       3,
       5,
@@ -45,16 +45,16 @@
       4,
       4
     ],
-    "GrossTotal": 89,
-    "NetTotal": 80
+    "grossTotal": 89,
+    "netTotal": 80
   },
   {
-    "TeamName": "A",
-    "EmailAddress": "harold@hotmail.com",
-    "First": "Harold",
-    "Last": "Cravener",
-    "CourseHandicap": 7,
-    "GrossScores": [
+    "teamName": "A",
+    "emailAddress": "harold@hotmail.com",
+    "first": "Harold",
+    "last": "Cravener",
+    "courseHandicap": 7,
+    "grossScores": [
       5,
       3,
       6,
@@ -74,7 +74,7 @@
       4,
       5
     ],
-    "NetScores": [
+    "netScores": [
       4,
       3,
       5,
@@ -94,16 +94,16 @@
       4,
       4
     ],
-    "GrossTotal": 87,
-    "NetTotal": 80
+    "grossTotal": 87,
+    "netTotal": 80
   },
   {
-    "TeamName": "A",
-    "EmailAddress": "beth@hotmail.com",
-    "First": "Beth",
-    "Last": "Cravener",
-    "CourseHandicap": 12,
-    "GrossScores": [
+    "teamName": "A",
+    "emailAddress": "beth@hotmail.com",
+    "first": "Beth",
+    "last": "Cravener",
+    "courseHandicap": 12,
+    "grossScores": [
       6,
       4,
       7,
@@ -123,7 +123,7 @@
       4,
       6
     ],
-    "NetScores": [
+    "netScores": [
       5,
       3,
       6,
@@ -143,16 +143,16 @@
       3,
       5
     ],
-    "GrossTotal": 96,
-    "NetTotal": 84
+    "grossTotal": 96,
+    "netTotal": 84
   },
   {
-    "TeamName": "A",
-    "EmailAddress": "london@hotmail.com",
-    "First": "London",
-    "Last": "Cravener",
-    "CourseHandicap": 11,
-    "GrossScores": [
+    "teamName": "A",
+    "emailAddress": "london@hotmail.com",
+    "first": "London",
+    "last": "Cravener",
+    "courseHandicap": 11,
+    "grossScores": [
       5,
       4,
       5,
@@ -172,7 +172,7 @@
       5,
       6
     ],
-    "NetScores": [
+    "netScores": [
       4,
       3,
       4,
@@ -192,16 +192,16 @@
       4,
       5
     ],
-    "GrossTotal": 93,
-    "NetTotal": 82
+    "grossTotal": 93,
+    "netTotal": 82
   },
   {
-    "TeamName": "B",
-    "EmailAddress": "fred@hotmail.com",
-    "First": "Fred",
-    "Last": "Cravener",
-    "CourseHandicap": 10,
-    "GrossScores": [
+    "teamName": "B",
+    "emailAddress": "fred@hotmail.com",
+    "first": "Fred",
+    "last": "Cravener",
+    "courseHandicap": 10,
+    "grossScores": [
       4,
       2,
       6,
@@ -221,7 +221,7 @@
       4,
       5
     ],
-    "NetScores": [
+    "netScores": [
       3,
       1,
       5,
@@ -241,16 +241,16 @@
       3,
       4
     ],
-    "GrossTotal": 85,
-    "NetTotal": 75
+    "grossTotal": 85,
+    "netTotal": 75
   },
   {
-    "TeamName": "B",
-    "EmailAddress": "tim@hotmail.com",
-    "First": "Tim",
-    "Last": "Cravener",
-    "CourseHandicap": 4,
-    "GrossScores": [
+    "teamName": "B",
+    "emailAddress": "tim@hotmail.com",
+    "first": "Tim",
+    "last": "Cravener",
+    "courseHandicap": 4,
+    "grossScores": [
       5,
       3,
       6,
@@ -270,7 +270,7 @@
       4,
       5
     ],
-    "NetScores": [
+    "netScores": [
       5,
       3,
       5,
@@ -290,16 +290,16 @@
       4,
       5
     ],
-    "GrossTotal": 79,
-    "NetTotal": 75
+    "grossTotal": 79,
+    "netTotal": 75
   },
   {
-    "TeamName": "B",
-    "EmailAddress": "phil@hotmail.com",
-    "First": "Phil",
-    "Last": "Cravener",
-    "CourseHandicap": 5,
-    "GrossScores": [
+    "teamName": "B",
+    "emailAddress": "phil@hotmail.com",
+    "first": "Phil",
+    "last": "Cravener",
+    "courseHandicap": 5,
+    "grossScores": [
       1,
       4,
       7,
@@ -319,7 +319,7 @@
       4,
       6
     ],
-    "NetScores": [
+    "netScores": [
       0,
       4,
       6,
@@ -339,16 +339,16 @@
       4,
       6
     ],
-    "GrossTotal": 93,
-    "NetTotal": 88
+    "grossTotal": 93,
+    "netTotal": 88
   },
   {
-    "TeamName": "B",
-    "EmailAddress": "sam@hotmail.com",
-    "First": "Sam",
-    "Last": "Cravener",
-    "CourseHandicap": 12,
-    "GrossScores": [
+    "teamName": "B",
+    "emailAddress": "sam@hotmail.com",
+    "first": "Sam",
+    "last": "Cravener",
+    "courseHandicap": 12,
+    "grossScores": [
       5,
       4,
       2,
@@ -368,7 +368,7 @@
       5,
       3
     ],
-    "NetScores": [
+    "netScores": [
       4,
       3,
       1,
@@ -388,16 +388,16 @@
       4,
       2
     ],
-    "GrossTotal": 88,
-    "NetTotal": 76
+    "grossTotal": 88,
+    "netTotal": 76
   },
   {
-    "TeamName": "C",
-    "EmailAddress": "dan@hotmail.com",
-    "First": "Dan",
-    "Last": "Cravener",
-    "CourseHandicap": 12,
-    "GrossScores": [
+    "teamName": "C",
+    "emailAddress": "dan@hotmail.com",
+    "first": "Dan",
+    "last": "Cravener",
+    "courseHandicap": 12,
+    "grossScores": [
       4,
       2,
       5,
@@ -417,7 +417,7 @@
       6,
       6
     ],
-    "NetScores": [
+    "netScores": [
       3,
       1,
       4,
@@ -437,16 +437,16 @@
       5,
       5
     ],
-    "GrossTotal": 86,
-    "NetTotal": 74
+    "grossTotal": 86,
+    "netTotal": 74
   },
   {
-    "TeamName": "C",
-    "EmailAddress": "koji@hotmail.com",
-    "First": "Koji",
-    "Last": "Cravener",
-    "CourseHandicap": 2,
-    "GrossScores": [
+    "teamName": "C",
+    "emailAddress": "koji@hotmail.com",
+    "first": "Koji",
+    "last": "Cravener",
+    "courseHandicap": 2,
+    "grossScores": [
       5,
       3,
       7,
@@ -466,7 +466,7 @@
       4,
       5
     ],
-    "NetScores": [
+    "netScores": [
       5,
       3,
       6,
@@ -486,16 +486,16 @@
       4,
       5
     ],
-    "GrossTotal": 86,
-    "NetTotal": 84
+    "grossTotal": 86,
+    "netTotal": 84
   },
   {
-    "TeamName": "C",
-    "EmailAddress": "rusty@hotmail.com",
-    "First": "Rusty",
-    "Last": "Cravener",
-    "CourseHandicap": 14,
-    "GrossScores": [
+    "teamName": "C",
+    "emailAddress": "rusty@hotmail.com",
+    "first": "Rusty",
+    "last": "Cravener",
+    "courseHandicap": 14,
+    "grossScores": [
       1,
       4,
       7,
@@ -515,7 +515,7 @@
       4,
       6
     ],
-    "NetScores": [
+    "netScores": [
       0,
       3,
       6,
@@ -535,16 +535,16 @@
       3,
       5
     ],
-    "GrossTotal": 88,
-    "NetTotal": 74
+    "grossTotal": 88,
+    "netTotal": 74
   },
   {
-    "TeamName": "C",
-    "EmailAddress": "bob@outlook.com",
-    "First": "Bob",
-    "Last": "Cravener",
-    "CourseHandicap": 17,
-    "GrossScores": [
+    "teamName": "C",
+    "emailAddress": "bob@outlook.com",
+    "first": "Bob",
+    "last": "Cravener",
+    "courseHandicap": 17,
+    "grossScores": [
       4,
       4,
       6,
@@ -564,7 +564,7 @@
       5,
       3
     ],
-    "NetScores": [
+    "netScores": [
       3,
       3,
       5,
@@ -584,7 +584,7 @@
       4,
       2
     ],
-    "GrossTotal": 84,
-    "NetTotal": 67
+    "grossTotal": 84,
+    "netTotal": 67
   }
 ]
