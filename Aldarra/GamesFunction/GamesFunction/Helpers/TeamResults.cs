@@ -14,8 +14,9 @@ namespace GamesFunction.Helpers
         {
             BindTeams(teams);
             Matches = matches;
-            BindMatchResults();
             Log = log;
+            BindMatchResults();
+            CalulateMatchResults();
         }
 
         [JsonProperty(PropertyName = "team", Required = Required.Always)]
@@ -45,10 +46,49 @@ namespace GamesFunction.Helpers
                 {
                     if (match.Contains(team))
                     {
-                        Team[team].MatchResult.Add(match, new GameResult());
+                        Team[team].MatchResult.Add(match, new GameResult { Match = match, HolesWon = new List<int>(), HolesTied = new List<int>()});
                     }
                 }
             }
+        }
+        public void CalulateMatchResults()
+        {
+            foreach(var team in Team.Keys)
+            {
+                foreach( var match in Team[team].MatchResult.Keys)
+                {
+                    var competitor = GetCompetitorName(match, team);
+                    Log.LogInformation($"Calculating match {team} vs {competitor}");
+
+                    for(int i = 0; i < Team[team].TeamScores.Count; i++)
+                    {
+                        if(Team[team].TeamScores[i] > Team[competitor].TeamScores[i])
+                        {
+                            Team[team].MatchResult[match].HolesWon.Add(i);
+
+                            if(i <= 5)
+                            {
+                                Team[team].MatchResult[match].Front++;
+                            }
+                            else
+                            {
+                                Team[team].MatchResult[match].Back++;
+                            }
+
+                            Team[team].MatchResult[match].Eighteen++;
+                        }
+                        else if(Team[team].TeamScores[i] == Team[competitor].TeamScores[i])
+                        {
+                            Team[team].MatchResult[match].HolesTied.Add(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        private string GetCompetitorName(string match, string team)
+        {
+            return match.Replace(team, null);
         }
 
         //private void BindMatch()

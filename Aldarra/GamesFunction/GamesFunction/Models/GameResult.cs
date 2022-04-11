@@ -11,5 +11,6 @@ namespace GamesFunction.Models
         public int Back { get; set; }
         public int Eighteen { get; set; }
         public List<int> HolesWon { get; set; }
+        public List<int> HolesTied { get; set; }
     }
 }
