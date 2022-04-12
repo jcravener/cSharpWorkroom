@@ -1,0 +1,84 @@
+﻿@page "/players"
+
+<h3>Players</h3>
+
+@using GamesUI.Services
+@using GamesUI.Models
+@inject PlayersService playersService
+
+
+@if (players == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p><b>Game Date:</b> @players[0].Date.ToShortDateString() <b>Course:</b> @players[0].CourseName</p>
+
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>Email</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Gender</th>
+                <th>Index</th>
+                <th>Teebox</th>
+                <th>Front Gross</th>
+                <th>Back Gross</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var player in players)
+            {
+                count = 0;
+                <tr>
+                    <td>@player.Team</td>
+                    <td>@player.Email</td>
+                    <td>@player.FirstName</td>
+                    <td>@player.LastName</td>
+                    <td>@player.Gender</td>
+                    <td>@player.HandicapIndex</td>
+                    <td>@player.TeeBoxName</td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    @for (int i = 0; i < 9; i++)
+                                    {
+                                        <td class="bg-light">@player.GrossScores[i]</td>
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    @for (int i = 9; i < 18; i++)
+                                    {
+                                        <td class="bg-light">@player.GrossScores[i]</td>
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+
+    private List<Player> players;
+    private int count = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        players = await playersService.GetPlayers(DateTime.Now);
+    }
+}
