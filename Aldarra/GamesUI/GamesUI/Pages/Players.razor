@@ -15,18 +15,46 @@ else
 {
     <p><b>Game Date:</b> @players[0].Date.ToShortDateString() <b>Course:</b> @players[0].CourseName</p>
 
-    <table class="table table-responsive">
+    @*@foreach (var player in players)
+    {
+        <div class="panel panel-primary">
+            <div class="panel panel-heading">
+                <h1 class="panel-title">Team @player.Team @player.FirstName</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-4 hidden-sm hidden-md hidden-lg">Email</div>
+                    <div class="col-xs-8 col-md-9">@player.Email</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 hidden-sm hidden-md hidden-lg">Gender</div>
+                    <div class="col-xs-8 col-md-9">@player.Gender</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 hidden-sm hidden-md hidden-lg">Index</div>
+                    <div class="col-xs-8 col-md-9">@player.HandicapIndex</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 hidden-sm hidden-md hidden-lg">Teebox</div>
+                    <div class="col-xs-8 col-md-9">@player.TeeBoxName</div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="col-xs-12">
+                    Foo
+                </div>
+            </div>
+        </div>
+
+    }*@
+
+
+<div>
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Team</th>
-                <th>Email</th>
-                <th>First</th>
-                <th>Last</th>
-                <th>Gender</th>
-                <th>Index</th>
-                <th>Teebox</th>
-                <th>Front Gross</th>
-                <th>Back Gross</th>
+                <th>Player Information</th>
             </tr>
         </thead>
         <tbody>
@@ -34,41 +62,90 @@ else
             {
                 count = 0;
                 <tr>
-                    <td>@player.Team</td>
-                    <td>@player.Email</td>
-                    <td>@player.FirstName</td>
-                    <td>@player.LastName</td>
-                    <td>@player.Gender</td>
-                    <td>@player.HandicapIndex</td>
-                    <td>@player.TeeBoxName</td>
                     <td>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    @for (int i = 0; i < 9; i++)
-                                    {
-                                        <td class="bg-light">@player.GrossScores[i]</td>
-                                    }
-                                </tr>
-                            </tbody>
-                        </table>
+                        <p><strong>@player.Team</strong></p>
                     </td>
                     <td>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    @for (int i = 9; i < 18; i++)
-                                    {
-                                        <td class="bg-light">@player.GrossScores[i]</td>
-                                    }
-                                </tr>
-                            </tbody>
-                        </table>
+                        <strong>@player.FirstName @player.LastName</strong><br />
+                        <strong>Box: </strong> @player.TeeBoxName<br />
+                        <strong>Index: </strong> @player.HandicapIndex<br />
+                        <p>
+                            <strong>Gross Scores:</strong><br />
+                            <table class="table table-bordered table-striped table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td class="bg-light">
+                                            <table class="table table-bordered table-striped table-sm">
+                                                <tr>
+                                                    @for (int i = 0; i < 9; i++)
+                                                    {
+                                                        var hole = i + 1;
+                                                        <th class="text-sm-center">@hole</th>
+                                                    }
+                                                </tr>
+                                                <tr>
+                                                    @for (int i = 0; i < 9; i++)
+                                                    {
+                                                        <td class="bg-light text-sm-center">@player.GrossScores[i]</td>
+                                                    }
+                                                </tr>
+                                                <tr>
+                                                    @for (int i = 9; i < 18; i++)
+                                                    {
+                                                        var hole = i + 1;
+                                                        <th class="text-sm-center">@hole</th>
+                                                    }
+                                                </tr>
+                                                <tr>
+                                                    @for (int i = 9; i < 18; i++)
+                                                    {
+                                                        <td class="bg-light text-sm-center">@player.GrossScores[i]</td>
+                                                    }
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </p>
                     </td>
+                    @*<td>@player.Email</td>
+                        <td>@player.FirstName</td>
+                        <td>@player.LastName</td>
+                        <td>@player.Gender</td>
+                        <td>@player.HandicapIndex</td>
+                        <td>@player.TeeBoxName</td>
+                        <td>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        @for (int i = 0; i < 9; i++)
+                                        {
+                                            <td class="bg-light">@player.GrossScores[i]</td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        @for (int i = 9; i < 18; i++)
+                                        {
+                                            <td class="bg-light">@player.GrossScores[i]</td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>*@
                 </tr>
             }
         </tbody>
     </table>
+
+</div>
 }
 
 
