@@ -106,7 +106,6 @@ namespace GamesFunction
 
             var allMatches = util.GetAllPairs(uniqueTeamNames);
 
-            //TeamResults teamResults = new TeamResults { Teams = teams, Matches = allMatches };
             TeamResults teamResults = new TeamResults(
                 teams,
                 allMatches,
@@ -116,5 +115,34 @@ namespace GamesFunction
             var responseMessage = JsonConvert.SerializeObject(teamResults);
             return new OkObjectResult(responseMessage);
         }
+        [FunctionName("SkinResults")]
+        public static async Task<IActionResult> SkinResults(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger Aldarra/SkinResults endpoint processed a request.");
+
+            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+
+            List<PlayerCard> playerCards;
+            try
+            {
+                playerCards = JsonConvert.DeserializeObject<List<PlayerCard>>(requestBody);
+            }
+            catch (Exception e)
+            {
+                var errorObjectResult = new ObjectResult(e.Message);
+                errorObjectResult.StatusCode = StatusCodes.Status500InternalServerError;
+                return errorObjectResult;
+            }
+
+            Utility util = new Utility();
+
+            var skins = util.GetSkins(playerCards);
+
+            var responseMessage = JsonConvert.SerializeObject(skins);
+            return new OkObjectResult(responseMessage);
+        }
+
     }
 }

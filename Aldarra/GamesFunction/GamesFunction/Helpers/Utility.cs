@@ -1,4 +1,5 @@
 ﻿using GamesFunction.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,17 @@ namespace GamesFunction.Helpers
 {
     public class Utility
     {
+        public Utility()
+        {
+        }
+
+        public Utility(ILogger log)
+        {
+            Log = log;
+        }
+
+        public ILogger Log { get; set; }
+
         public List<string> GetAllPairs(List<string> teams)
         {
             StringBuilder sb = new StringBuilder();
@@ -49,6 +61,51 @@ namespace GamesFunction.Helpers
                           select PlayerCard.TeamName;
 
             return results.Distinct().ToList();
+        }
+
+        public List<Skin> GetSkins(List<PlayerCard> playerCards)
+        {
+            List<Skin> skins = new List<Skin>();
+
+            int holeCount = playerCards[0].GrossScores.Length;
+
+            int scoreCount = 0;
+            Skin currentSkin = new Skin();
+
+            for (int hole = 0; hole < holeCount; hole++)
+            {
+                for(int card = 0; card < playerCards.Count; card++)
+                {
+                    if(card == 0)
+                    {
+                        currentSkin.Team = playerCards[card].EmailAddress;
+                        currentSkin.Email = playerCards[card].EmailAddress;
+                        currentSkin.FirstName = playerCards[card].First;
+                        currentSkin.LastName = playerCards[card].Last;
+                        currentSkin.Score = playerCards[card].GrossScores[hole];
+                        scoreCount = 1;
+                        continue;
+                    }
+
+                    if(scoreCount == 1 && playerCards[card].GrossScores[hole] < currentSkin.Score)
+                    {
+                        currentSkin.Team = playerCards[card].EmailAddress;
+                        currentSkin.Email = playerCards[card].EmailAddress;
+                        currentSkin.FirstName = playerCards[card].First;
+                        currentSkin.LastName = playerCards[card].Last;
+                        currentSkin.Score = playerCards[card].GrossScores[hole];
+                        scoreCount = 1;
+                    }
+
+                    if(playerCards[card].GrossScores[hole] == currentSkin.Score)
+                    {
+                        card = playerCards.Count;
+                    }
+                }
+            }
+
+
+            return skins;
         }
     }
 }
