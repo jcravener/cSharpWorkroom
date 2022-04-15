@@ -67,13 +67,11 @@ namespace GamesFunction.Helpers
         {
 
             int holes = playerCards[0].GrossScores.Length;
-            List<Skin>[] skinMatrix = new List<Skin>[holes];
 
             List<SkinResult> skinResults = new List<SkinResult>();
             
             for(int i = 0; i < holes; i++)
             {
-                //skinMatrix[i] = new List<Skin>();
                 var skinList = new List<Skin>();
 
                 foreach (PlayerCard playerCard in playerCards)
@@ -91,8 +89,6 @@ namespace GamesFunction.Helpers
                 var result = from skin in skinList
                              orderby skin.Score
                              select skin;
-
-                skinMatrix[i] = result.ToList();
 
                 if(result.ToList().Count > 1 && result.ToList()[0].Score != result.ToList()[1].Score)
                 {
