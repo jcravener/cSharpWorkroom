@@ -63,49 +63,52 @@ namespace GamesFunction.Helpers
             return results.Distinct().ToList();
         }
 
-        public List<Skin> GetSkins(List<PlayerCard> playerCards)
+        public List<SkinResult> GetSkins(List<PlayerCard> playerCards)
         {
-            List<Skin> skins = new List<Skin>();
 
-            int holeCount = playerCards[0].GrossScores.Length;
+            int holes = playerCards[0].GrossScores.Length;
+            List<Skin>[] skinMatrix = new List<Skin>[holes];
 
-            int scoreCount = 0;
-            Skin currentSkin = new Skin();
-
-            for (int hole = 0; hole < holeCount; hole++)
+            List<SkinResult> skinResults = new List<SkinResult>();
+            
+            for(int i = 0; i < holes; i++)
             {
-                for(int card = 0; card < playerCards.Count; card++)
+                //skinMatrix[i] = new List<Skin>();
+                var skinList = new List<Skin>();
+
+                foreach (PlayerCard playerCard in playerCards)
+                {                                        
+                    skinList.Add(new Skin
+                    {
+                        Team = playerCard.TeamName,
+                        Email = playerCard.EmailAddress,
+                        FirstName = playerCard.First,
+                        LastName = playerCard.Last,
+                        Score = playerCard.GrossScores[i],
+                    });
+                }
+
+                var result = from skin in skinList
+                             orderby skin.Score
+                             select skin;
+
+                skinMatrix[i] = result.ToList();
+
+                if(result.ToList().Count > 1 && result.ToList()[0].Score != result.ToList()[1].Score)
                 {
-                    if(card == 0)
+                    skinResults.Add(new SkinResult
                     {
-                        currentSkin.Team = playerCards[card].EmailAddress;
-                        currentSkin.Email = playerCards[card].EmailAddress;
-                        currentSkin.FirstName = playerCards[card].First;
-                        currentSkin.LastName = playerCards[card].Last;
-                        currentSkin.Score = playerCards[card].GrossScores[hole];
-                        scoreCount = 1;
-                        continue;
-                    }
-
-                    if(scoreCount == 1 && playerCards[card].GrossScores[hole] < currentSkin.Score)
-                    {
-                        currentSkin.Team = playerCards[card].EmailAddress;
-                        currentSkin.Email = playerCards[card].EmailAddress;
-                        currentSkin.FirstName = playerCards[card].First;
-                        currentSkin.LastName = playerCards[card].Last;
-                        currentSkin.Score = playerCards[card].GrossScores[hole];
-                        scoreCount = 1;
-                    }
-
-                    if(playerCards[card].GrossScores[hole] == currentSkin.Score)
-                    {
-                        card = playerCards.Count;
-                    }
+                        Team = result.ToList()[0].Team,
+                        Email = result.ToList()[0].Email,
+                        FirstName = result.ToList()[0].FirstName,
+                        LastName = result.ToList()[0].LastName,
+                        Score = result.ToList()[0].Score,
+                        Hole = i
+                    }); 
                 }
             }
 
-
-            return skins;
+            return skinResults;
         }
     }
 }
