@@ -1,0 +1,25 @@
+@startuml Yaml Emitter
+skinparam Style strictuml
+skinparam ClassFontSize 14
+
+
+Parameters -> PipelineComponentData: Generate Parameters
+Parameters -> TopLevelObject: Attach to Top Level Object
+Variables -> PipelineComponentData: Generate Varaibles
+Variables -> TopLevelObject: Attach to Top Level Object
+Resources -> PipelineComponentData: Generate Resrouces
+Resources -> TopLevelObject: Attach to Top Level Object
+
+loop N Stages
+    Stages -> PipelineComponentData: Generate Stages
+end
+
+loop N Jobs
+    Jobs -> PipelineComponentData: Generate Jobs
+end
+
+loop N Jobs
+    Steps -> PipelineComponentData: Generate Steps
+end
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml Yaml Emitter
+skinparam Style strictuml
+skinparam ClassFontSize 14
+
+
+actor User
+
+User -> Config: Create config(s)
+Rollouts -> Config: Create Rollouts
+
+loop N stages
+    Rollouts -> PipelineComponentData: Create component data objs
+end
+
+TopLevelEnv -> PipelineComponentData: Create top level environment
+TopLevelEnv -> TopLevelObject: Create Top Level Object
+
+alt With Lockbox
+    TopLevelEnv -> TopLevelObject: Add lockbox template
+else Without Lockbox
+    TopLevelEnv -> TopLevelObject: No lockbox template
+end
+
+
+@enduml

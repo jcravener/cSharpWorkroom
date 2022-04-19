@@ -1,0 +1,22 @@
+@startuml Yaml Emitter
+skinparam Style strictuml
+
+
+
+YamlReleaseDef -> YAMLFile: Release flow defined in YAML
+YamlReleaseDef -> QueueRelease: Release gets queued
+QueueTimeValidator -> YAMLFile: M365 Conductor queue-time YAML validation
+
+alt Validations Pass
+    YamlReleaseDef -> ExecuteRelease
+else Valiation Fails
+    YamlReleaseDef -> CancleRelease
+end
+
+ReleaseTimeValidator -> ExecuteRelease: M365 Conductor release-time validation
+
+alt Validations Pass
+    ExecuteRelease -> Lockbox
+else Valiation Fails
+    ExecuteRelease -> CancleRelease
+end

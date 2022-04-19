@@ -1,0 +1,55 @@
+@startuml Yaml Emitter
+skinparam Style strictuml
+skinparam DefaultFontSize 48
+
+
+actor User
+
+User -> DataInputs: Create Inputs
+Rollouts -> DataInputs: Create Rollouts
+
+loop N stages
+    Rollouts -> PipelineComponentData: Create component data objs
+end
+
+TopLevelEnv -> PipelineComponentData: Create Top Level pipeline env
+TopLevelEnv -> TopLevelObject: Create Top Level Object
+
+alt With Lockbox
+    TopLevelEnv -> TopLevelObject: Add lockbox template
+else Without Lockbox
+    TopLevelEnv -> TopLevelObject: No lockbox template
+end
+
+Parameters -> PipelineComponentData: Generate Parameters
+Parameters -> TopLevelObject: Attach to Top Level Object
+Variables -> PipelineComponentData: Generate Varaibles
+Variables -> TopLevelObject: Attach to Top Level Object
+Resources -> PipelineComponentData: Generate Resrouces
+Resources -> TopLevelObject: Attach to Top Level Object
+
+loop N Stages
+    Stages -> PipelineComponentData: Generate Stages
+end
+
+loop N Jobs
+    Jobs -> PipelineComponentData: Generate Jobs
+end
+
+loop N Jobs
+    Steps -> PipelineComponentData: Generate Steps
+end
+
+Steps -> Jobs: Attach to Jobs
+Jobs -> Stages: Attach to Stages
+
+Stages -> TopLevelObject: Attach to Top Level Object
+
+TopLevelObject -> YamlPipelineFile: Serilaize Complete Object
+
+alt Check-in to soruce control
+    YamlPipelineFile -> SourceControl: Check into Git
+else Write to file
+    YamlPipelineFile -> Output.yml: Write to File
+
+@enduml

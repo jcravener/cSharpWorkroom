@@ -1,0 +1,24 @@
+@startuml Yaml Emitter
+skinparam Style strictuml
+
+
+actor User
+
+User -> DataInputs: Create Inputs
+User -> Build: Build Project
+Build -> EXE: EXE created
+User -> EXE: Run EXE
+EXE -> YamlFile: Emit YAML
+
+alt Check into Git
+    YamlFile -> Git: Auto check-in
+else Output to disk
+    YamlFile -> Disk
+    Disk -> Git: Manual check-in
+end
+
+Git -> PullRequest:  Pull Request created
+PRValidations -> PullRequest: Run PR-Validations
+ReleaseDef -> YamlFile: Point to Yaml file
+
+@end

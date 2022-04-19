@@ -1,0 +1,29 @@
+@startuml Yaml Emitter
+skinparam Style strictuml
+
+actor User
+
+User -> DataInputs: Create Inputs
+Rollouts -> DataInputs: Create Rollouts
+
+loop N stages
+    Rollouts -> PipelineComponentData: Create component data objs
+end
+
+TopLevelEnv -> PipelineComponentData: Create Top Level pipeline env
+TopLevelEnv -> TopLevelObject: Create Top Level object
+
+alt With Lockbox
+    TopLevelEnv -> TopLevelObject: Add lockbox template
+else Without Lockbox
+    TopLevelEnv -> TopLevelObject: No lockbox template
+end
+
+Parameters -> PipelineComponentData: Generate Parameters
+Parameters -> TopLevelObject: Attach to Top Level Object
+Variables -> PipelineComponentData: Generate Varaibles
+Variables -> TopLevelObject: Attach to Top Level Object
+Resources -> PipelineComponentData: Generate Resrouces
+Resources -> TopLevelObject: Attach to Top Level Object
+
+@enduml
