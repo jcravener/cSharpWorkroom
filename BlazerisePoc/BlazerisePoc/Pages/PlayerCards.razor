@@ -1,0 +1,96 @@
+﻿@page "/playercards"
+
+<h3>Player Cards</h3>
+
+<DateEdit TValue="DateTime?" Date="@selectedDate" DateChanged="@OnDateChanged" />
+
+<Divider />
+
+<Select TValue="string" SelectedValue="@gameNumber" SelectedValueChanged="@OnSelectedValueChanged">
+    <SelectItem Value="00">Pick a Game Number</SelectItem>
+    <SelectItem Value="01">One</SelectItem>
+    <SelectItem Value="02">Two</SelectItem>
+    <SelectItem Value="03">Three</SelectItem>
+    <SelectItem Value="04">Four</SelectItem>
+</Select>
+
+<Fields TValue="string">
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>1</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[0]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>2</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[1]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>3</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[2]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>4</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[3]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>5</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[4]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>6</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[5]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>7</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[7]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>8</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[7]" />
+    </Field>
+    <Field ColumnSize="ColumnSize.Is1.OnMobile">
+        <FieldLabel>9</FieldLabel>
+        <NumericEdit TValue="int" @bind-Value="@foo[8]" />
+    </Field>
+</Fields>
+
+<Divider />
+
+
+@if(selectedDate != null)
+{
+    <Divider />
+    <div>You chose: @selectedDate</div>
+}
+
+@if(gameNumber != null)
+{
+    <Divider />
+    <div>Game number: @gameNumber</div>    
+}
+
+<Divider />
+
+
+@foreach(int i in foo)
+{
+   @i
+}
+
+@code{
+    int[] foo = new int[18];
+    
+    DateTime? selectedDate;
+
+    void OnDateChanged( DateTime? date )
+    {
+        selectedDate = date;
+    }
+
+    string gameNumber;
+
+    Task OnSelectedValueChanged( string value )
+    {
+        gameNumber = value;
+        return Task.CompletedTask;
+    }
+}
