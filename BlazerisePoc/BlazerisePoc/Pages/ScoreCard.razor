@@ -1,0 +1,124 @@
+﻿@page "/scorecard"
+
+<h3>ScoreCard</h3>
+
+<Table Narrow Bordered>
+    <TableBody>
+        <TableRow >
+            <TableRowCell ColumnSpan=@hole.Count>
+                <Strong>Name:</Strong> John Cravener
+                <Strong>Index:</Strong> 8.2
+                <Strong>Team:</Strong> A
+                <Strong>Date:</Strong> 3/3/2022
+                <Strong>Game:</Strong> 01
+            </TableRowCell>
+        </TableRow>
+        <TableRow>
+            @foreach(var item in @hole)
+            {
+                <TableRowCell>@item</TableRowCell>
+            }
+        </TableRow>
+        <TableRow>
+            @foreach(var item in @ToScoreTable(@par, "Par"))
+            {
+                <TableRowCell>@item</TableRowCell>
+            }
+        </TableRow>
+        <TableRow>
+            @foreach(var item in @ToScoreTable(@grossScore, "Gross Score"))
+            {
+                <TableRowCell>@item</TableRowCell>
+            }
+        </TableRow>
+        <TableRow>
+            @foreach(var item in @ToScoreTable(@netScore, "Net Score"))
+            {
+                <TableRowCell>@item</TableRowCell>
+            }
+        </TableRow>
+        <TableRow>
+            @foreach(var item in @ToScoreTable(@ToPar(@netScore), "To Par (net)"))
+            {
+                <TableRowCell>@item</TableRowCell>
+            }
+        </TableRow>
+    </TableBody>
+
+</Table>
+
+
+
+@code {
+    List<string> hole = new List<string>
+    {
+        "Hole", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Out", "10", "11", "12", "13", "14", "15", "16", "17", "18", "In", "Total"
+    };
+
+    List<int> par = new List<int>
+    {
+        4,3,5,4,4,3,5,4,3,4,5,5,3,4,3,4,4,4
+    };
+
+    List<int> grossScore = new List<int>
+    {
+        3,4,2,5,6,7,4,3,2,5,6,2,4,7,4,3,2,2
+    };
+    List<int> netScore = new List<int>
+    {
+        3,3,2,4,6,6,4,3,2,5,5,2,4,6,4,3,2,2
+    };
+
+
+    public List<int> ToPar(List<int> score)
+    {
+        List<int> toPar = new List<int>();
+
+        for(int i = 0; i < score.Count; i++)
+        {
+            toPar.Add(score[i] - par[i]);
+        }
+
+        return toPar;
+    }
+
+    private List<string> ToScoreTable(List<int> scores, string header)
+    {
+        int count = 0;
+        int sum = 0;       
+        List<string> scoreTable = new List<string>();
+
+        foreach(var i in scores)
+        {
+            sum += i;
+
+            if(count == 0)
+            {
+                scoreTable.Add(header);
+                scoreTable.Add(i.ToString());
+            }            
+
+            else if(count == 8)
+            {
+                scoreTable.Add(i.ToString());
+                scoreTable.Add(sum.ToString());
+                sum = 0;
+            }
+
+            else if(count == 17)
+            {
+                scoreTable.Add(i.ToString());
+                scoreTable.Add(sum.ToString());
+                scoreTable.Add(scores.Sum().ToString());
+            }
+            else
+            {
+                scoreTable.Add(i.ToString());
+            }
+
+            count++;
+        }
+
+        return scoreTable;
+    }
+}
