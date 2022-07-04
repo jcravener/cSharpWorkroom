@@ -6,9 +6,10 @@ namespace Implement_strStr
     {
         static void Main()
         {
+            //string h = "mississ";
             string h = "mississippi";
             string n = "issip";
-
+            
             Console.WriteLine(StrStr(h, n).ToString());
         }
 
@@ -21,8 +22,6 @@ namespace Implement_strStr
 
         public static int StrStr(string haystack, string needle)
         {
-            int firstIndex = -1;
-
             if (string.IsNullOrEmpty(needle) || haystack.Equals(needle))
             {
                 return 0;
@@ -33,37 +32,27 @@ namespace Implement_strStr
                 return -1;
             }
 
-            char[] h = haystack.ToCharArray();
-            char[] n = needle.ToCharArray();
+            //char[] h = haystack.ToCharArray();
+            //char[] n = needle.ToCharArray();
 
             for(int i = 0; i < haystack.Length; i++)
-            {                                
-                if(h[i] == n[0]) // we found first char, now check the rest
+            {
+                if(haystack[i] == needle[0])
                 {
-                    firstIndex = i;
-
-                    if(needle.Length == 1)
+                    if (haystack.Length - i >= needle.Length)
                     {
-                        return firstIndex;
+                        if (needle.Equals(haystack.Substring(i, needle.Length)))
+                        {
+                            return i;
+                        }
                     }
-
-                    for(int j = 1; j < n.Length; j++)
+                    else
                     {
-                        if(i+j < h.Length)
-                        {
-                            return firstIndex;
-                        }
-                        
-                        if(n[j] != h[i + j])
-                        {
-                            firstIndex = -1;
-                            continue;
-                        }
+                        break;
                     }
                 }
             }
-
-            return firstIndex;
+            return -1;
         }
     }
 }
