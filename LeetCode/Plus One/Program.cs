@@ -7,7 +7,7 @@ namespace Plus_One
     {
         static void Main(string[] args)
         {
-            int[] digits = { 9, 9 };
+            int[] digits = { 1, 9 };
             Solution solution = new Solution();
 
             foreach(int i in solution.PlusOne(digits))
@@ -23,19 +23,29 @@ namespace Plus_One
         {
             List<int> rt = new List<int>(digits);
 
-            // This only works for the case where the last digit in 9
-            // It fails when the 2nd to the last digit in 9.  e.g. [9,9]
-            // Seems a recursive solution would be on order.
-            // But maybe an iterative solution wold work as well.
-
-            if (digits[^1] < 9)
+            if (rt[^1] < 9)
             {
                 rt[^1]++;
             }
             else
             {
-                rt[^1] = 1;
-                rt.Add(0);
+                for(int i = rt.Count - 1; i >= 0; i--)
+                {
+                    if(rt[i] == 9)
+                    {
+                        rt[i] = 0;
+
+                        if(i == 0)
+                        {
+                            rt.Insert(0, 1);
+                        }
+                    }
+                    else
+                    {
+                        rt[i]++;
+                        break;
+                    }
+                }
             }
  
             return rt.ToArray();
