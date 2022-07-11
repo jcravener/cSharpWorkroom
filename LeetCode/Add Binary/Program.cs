@@ -2,7 +2,7 @@
 
 
 string a = "11";
-string b = "111100";
+string b = "1111";
 
 Solution solution = new Solution();
 
@@ -13,37 +13,70 @@ public class Solution
 {
     public string AddBinary(string a, string b)
     {
-        int max = 0;
+        string big = a;
+        string small = b;
 
-        if (a.Length > b.Length)
+        if(b.Length > a.Length)
         {
-            max = a.Length - b.Length;
-
-            for (int i = 0; i < max; i++)
-            {
-                b = "0" + b;
-            }
-        }
-        if (a.Length < b.Length)
-        {
-            max = b.Length - a.Length;
-
-            for (int i = 0; i < max; i++)
-            {
-                a = "0" + a;
-            }
+            big = b;
+            small = a;
         }
 
-        int carry = 0;
-        string rt = "";
+        int max = big.Length - small.Length;
 
-        for(int i = 0; i < a.Length; i++)
+        for(int i = 0; i < max; i++)
         {
-            if (a[i].Equals("1") && b[i].Equals("1"))
+            small = "0" + small;
+        }
+
+        bool carry = false;
+        string answer = "";
+
+        for(int i = big.Length-1; i >= 0; i--)
+        {
+            if (big[i].Equals('0') && small[i].Equals('0'))
             {
-                carry = 1;
-                rt = rt + "0";
+                if (carry)
+                {
+                    answer = "1" + answer;
+                    carry = false;
+                }
+                else
+                {
+                    answer = "0" + answer;
+                }
+            }
+            else if(big[i].Equals('1') && small[i].Equals('1'))
+            {
+                if (carry)
+                {
+                    answer = "1" + answer;
+                }
+                else
+                {
+                    answer = "0" + answer;
+                    carry = true;
+                }
+            }
+            else
+            {
+                if (carry)
+                {
+                    answer = "0" + answer;
+                    carry = true;
+                }
+                else
+                {
+                    answer = "1" + answer;
+                }
             }
         }
+
+        if (carry)
+        {
+            answer = "1" + answer;
+        }
+
+        return answer;
     }
 }
