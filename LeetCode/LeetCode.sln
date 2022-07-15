@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Search Insert Position", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plus One", "Plus One\Plus One.csproj", "{23D59881-55DF-4359-876D-BED92E470006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Add Binary", "Add Binary\Add Binary.csproj", "{49BE5F27-617C-496D-95BB-1C137BBD2CB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Add Binary", "Add Binary\Add Binary.csproj", "{49BE5F27-617C-496D-95BB-1C137BBD2CB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remove Duplicates from Sorted List", "Remove Duplicates from Sorted List\Remove Duplicates from Sorted List.csproj", "{BA9226A3-51C6-4D9E-B952-583596155199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{49BE5F27-617C-496D-95BB-1C137BBD2CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49BE5F27-617C-496D-95BB-1C137BBD2CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49BE5F27-617C-496D-95BB-1C137BBD2CB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA9226A3-51C6-4D9E-B952-583596155199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA9226A3-51C6-4D9E-B952-583596155199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA9226A3-51C6-4D9E-B952-583596155199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA9226A3-51C6-4D9E-B952-583596155199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
