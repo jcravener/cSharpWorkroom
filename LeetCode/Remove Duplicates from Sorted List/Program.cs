@@ -9,63 +9,26 @@ foreach(var i in lst)
     linkedList.Append(i);
 }
 
-LinkedList returnList = new LinkedList();
-HashSet<int> set = new HashSet<int>();
+// I knew we just needed to updated the pointers, but had trouble keeping track of them.
+//
+// This is the solution from Leetcode: Note comments below.  
 
-var currNode = linkedList.Head;
-while(currNode.Next != null)
+var currNode = linkedList.Head; // Start at the head.  Jump in while loop if head is not null and head is connected to another node
+while(currNode != null && currNode.Next != null)
 {
-    currNode = currNode.Next;
-
-    if (!set.Contains(currNode.Val))
+    if(currNode.Val == currNode.Next.Val) // if current node's val is equal to the next node's val, the tow are duplicates
     {
-        set.Add(currNode.Val);
-
-        returnList.Append(currNode.Val);
+        currNode.Next = currNode.Next.Next; // if the two are duplicates, point current node to what the next one is pointing to (i.e. the third one)
+    }
+    else
+    {
+        currNode = currNode.Next; // in this case the two are not duplicate, so just move to the next node
     }
 }
 
 currNode = linkedList.Head;
-while (currNode.Next != null)
-{
-    currNode = currNode.Next;
-    Console.WriteLine(currNode.Val);
-}
 
-Console.WriteLine("------");
-
-currNode = returnList.Head;
-while(currNode.Next != null)
-{
-    currNode = currNode.Next;
-    Console.WriteLine(currNode.Val);
-}
-
-Console.WriteLine("------");
-
-currNode = linkedList.Head;
-var savedNode = new ListNode();
-set.Clear();
-while (currNode.Next != null)
-{
-    currNode = currNode.Next;
-
-    if (!set.Contains(currNode.Val)) // We have not seen this one yet
-    {
-        set.Add(currNode.Val);
-        savedNode = currNode;
-    }
-
-    // we have seen this one, so check the other one
-
-    // As soon as we see a new one, point the save one to the new one
-}
-
-Console.WriteLine("------");
-
-
-currNode = linkedList.Head;
-while (currNode.Next != null)
+while(currNode != null && currNode.Next != null)
 {
     currNode = currNode.Next;
     Console.WriteLine(currNode.Val);
@@ -98,17 +61,5 @@ public class LinkedList
         };
         Tail.Next = newNode;
         Tail = newNode;
-    }
-}
-public class Solution
-{
-    public ListNode DeleteDuplicates(ListNode head)
-    {
-        while(head.Next != null)
-        {
-
-        }
-
-        return new ListNode();
     }
 }
