@@ -1,18 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+int m = 3;
 int[] nums2 = { 2, 5, 6 };
+int n = 3;
 
-int max = nums1.Length;
 
-for(int i = nums1.Length - 1; i >= nums2.Length; i--)
+for(int i = 0; i < n; i++)
 {    
-    nums1[i] = nums2[i - nums2.Length];
+    nums1[m+i] = nums2[i];
 }
 
 Array.Sort(nums1);
 
-for(int i = 0; i < max; i++)
+for(int i = 0; i < nums1.Length; i++)
 {
     Console.WriteLine(nums1[i]);
 }
