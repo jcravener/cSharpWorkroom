@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,22 +16,22 @@ namespace LeetCode2025.Problems.Two
         
         public void RunProblem()
         {
-            var list1 = new int[] { 2, 4, 3 };
-            var list2 = new int[] { 5, 6, 4 };
+            var list1 = new int[] { 9 };
+            var list2 = new int[] { 1, 9, 9, 9, 9, 9, 9, 9, 9, 9 };
 
             var l1 = new LinkedList(list1);
             var l2 = new LinkedList(list2);
 
-            int val1 = GetVal(l1.head);
-            int val2 = GetVal(l2.head);
+            BigInteger val1 = GetVal(l1.head);
+            BigInteger val2 = GetVal(l2.head);
 
-            int sum = 8002000;
+            BigInteger sum = val1+val2;
 
             ListNode head = null;
 
             if (sum == 0)
             {
-                head = AdvanceNode(null, sum);
+                head = AdvanceNode(null, 0);
             }
             else
             {
@@ -44,19 +45,19 @@ namespace LeetCode2025.Problems.Two
             }
         }
 
-        private static int GetVal(ListNode node)
+        private static BigInteger GetVal(ListNode node)
         {
-            double val = 0;
+            BigInteger val = 0;
             int index = 0;
 
             while (node != null)
             {
-                val += Math.Pow(10, index) * node.val;
+                val += BigInteger.Pow(10, index) * node.val;
                 node = node.next;
                 index++;
             }
 
-            return (int)val;
+            return val;
         }
 
         private static ListNode AdvanceNode(ListNode? head, int val)
@@ -67,7 +68,7 @@ namespace LeetCode2025.Problems.Two
             return head;
         }
 
-        private static ListNode GetAnswer(ListNode? head, int sum)
+        private static ListNode GetAnswer(ListNode? head, BigInteger sum)
         {
             foreach (char dig in sum.ToString())
             {
