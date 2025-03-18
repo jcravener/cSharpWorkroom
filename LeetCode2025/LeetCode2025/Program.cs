@@ -1,4 +1,5 @@
 ﻿using LeetCode2025.Problems.Nine;
+using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.Three;
 using LeetCode2025.Problems.Two;
 using System.Net.WebSockets;
@@ -19,6 +20,9 @@ namespace LeetCode2025
 
             var nine = new ProblemNine(10);
             nine.RunProblem();
+
+            var thirteen = new ProblemThriteen("CM");
+            thirteen.RunProblem();
         }
     }
 }
