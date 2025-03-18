@@ -13,8 +13,8 @@ namespace LeetCode2025
             var two = new ProblemTwo();
             two.RunProblem();
 
-            //var three = new ProblemThree("aab");
-            //three.RunProblem();
+            var three = new ProblemThree("bbbbb");
+            three.RunProblem();
         }
     }
 }
