@@ -1,4 +1,5 @@
-﻿using LeetCode2025.Problems.Three;
+﻿using LeetCode2025.Problems.Nine;
+using LeetCode2025.Problems.Three;
 using LeetCode2025.Problems.Two;
 using System.Net.WebSockets;
 using System.Security.Cryptography.X509Certificates;
@@ -15,6 +16,9 @@ namespace LeetCode2025
 
             var three = new ProblemThree("bbbbb");
             three.RunProblem();
+
+            var nine = new ProblemNine(10);
+            nine.RunProblem();
         }
     }
 }
