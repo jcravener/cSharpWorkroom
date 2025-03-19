@@ -15,7 +15,7 @@ namespace LeetCode2025
             var two = new ProblemTwo();
             two.RunProblem();
 
-            var three = new ProblemThree("bbbbb");
+            var three = new ProblemThree("tmmzuxt");
             three.RunProblem();
 
             var nine = new ProblemNine(10);
