@@ -8,56 +8,43 @@ using System.Threading.Tasks;
 
 namespace LeetCode2025.Problems.Three
 {
-    public class ProblemThree
+    public class ProblemThree : ProblemBase
     {
-        private int front { get; set; }
-        private int back { get; set; }
-        
-        
         private string Input { get; set; }
-        private int Max { get; set; }
-        private int CurrentMax { get; set; }
-        private Queue<char> Chars { get; set; }
-        
-        public ProblemThree(string input) 
-        {
-            Console.WriteLine($"Running: {this.GetType().Name}.");
 
+        public ProblemThree(string input) : base()
+        {
             Input = input;
-            Max = 0;
-            CurrentMax = 0;
-            Chars = new();
         }
 
         public void RunProblem()
         {
-            //TODO: Continue working to find a solution to all test cases.
-            
-            foreach (char c in Input)
-            {
-                if (Chars.Contains(c))
-                {                                       
-                    if(Chars.Peek() != c)
-                    {
-                        Chars.Enqueue(c);
-                    }
+            int startPointer = 0;
+            int maxLength = 0;
+            Dictionary<char, int> startPointerRef = new();
 
-                    Chars.Dequeue();
+            for(int i = 0; i < Input.Length; i++)
+            {
+                char c = Input[i];
+
+                if (startPointerRef.ContainsKey(c))
+                {
+                    startPointer = startPointerRef[c] + 1;
                 }
                 else
                 {
-                    Chars.Enqueue(c);
-                }
+                    startPointerRef.Add(c, i);
 
-                CurrentMax = Chars.Count;
+                    var length = i - startPointer + 1;
 
-                if(CurrentMax > Max)
-                {
-                    Max = CurrentMax;
+                    if(length > maxLength)
+                    {
+                        maxLength = length;
+                    }
                 }
             }
 
-            Console.WriteLine(Max.ToString());
+            Console.WriteLine($"{Input}: {maxLength}");
         }
     }
 }

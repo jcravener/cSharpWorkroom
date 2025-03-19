@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LeetCode2025.Problems.Thirteen
 {
-    public class ProblemThriteen
+    public class ProblemThriteen : ProblemBase
     {
         private static Dictionary<char, int> Map = new()
         {
@@ -21,7 +21,7 @@ namespace LeetCode2025.Problems.Thirteen
 
         private string Numeral { get; set; }
 
-        public ProblemThriteen(string numeral)
+        public ProblemThriteen(string numeral) : base()
         {
             Numeral = numeral;
         }

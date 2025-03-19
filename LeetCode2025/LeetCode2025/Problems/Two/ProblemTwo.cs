@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace LeetCode2025.Problems.Two
 {
-    public class ProblemTwo
+    public class ProblemTwo : ProblemBase
     {       
-        public ProblemTwo() 
+        public ProblemTwo() : base()
         { 
-            Console.WriteLine($"Running: {this.GetType().Name}.");
         }
         
         public void RunProblem()

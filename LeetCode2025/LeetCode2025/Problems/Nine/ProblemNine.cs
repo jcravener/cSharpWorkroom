@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace LeetCode2025.Problems.Nine
 {
-    public class ProblemNine
+    public class ProblemNine : ProblemBase
     {
         private string Number { get; set; }
 
-        public ProblemNine(int number)
+        public ProblemNine(int number) : base()
         {
-            Console.WriteLine($"Running: {this.GetType().Name}");
-
             Number = number.ToString();
         }
 
