@@ -23,18 +23,20 @@ namespace LeetCode2025.Problems.Twenty
         // TODO: Not working.  Need to fix.
         private bool Solve()
         {
-            if (Input.Length % 2 != 0)
+            var s = Input;
+            
+            if (s.Length % 2 != 0)
             {
                 return false;
             }
 
-            HashSet<char> opens = new() { '(', '{', '[' };
+            HashSet<char> open = new() { '(', '{', '[' };
 
             Stack<char> openChars = new();
 
-            foreach (char c in Input)
+            foreach (char c in s)
             {
-                if (openChars.Contains(c))
+                if (open.Contains(c))
                 {
                     openChars.Push(c);
                 }
