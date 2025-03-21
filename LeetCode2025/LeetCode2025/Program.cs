@@ -1,4 +1,5 @@
-﻿using LeetCode2025.Problems.Nine;
+﻿using LeetCode2025.Problems.Fourteen;
+using LeetCode2025.Problems.Nine;
 using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.Three;
 using LeetCode2025.Problems.Twenty;
@@ -48,6 +49,12 @@ namespace LeetCode2025
 
             twenty.Input = "]";
             twenty.RunProblem();
+
+            var fourteen = new ProblemFourteen(["flower", "flow", "flight"]);
+            fourteen.RunProblem();
+
+            fourteen.Strings = ["dog", "racecar", "car"];
+            fourteen.RunProblem();
         }
     }
 }
