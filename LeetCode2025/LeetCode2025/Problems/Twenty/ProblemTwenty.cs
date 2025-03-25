@@ -20,7 +20,6 @@ namespace LeetCode2025.Problems.Twenty
             Console.WriteLine($"{Input}: {Solve()}");
         }
 
-        // TODO: Not working.  Need to fix.
         private bool Solve()
         {
             var s = Input;

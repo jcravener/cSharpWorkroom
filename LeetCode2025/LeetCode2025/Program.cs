@@ -3,6 +3,7 @@ using LeetCode2025.Problems.Nine;
 using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.Three;
 using LeetCode2025.Problems.Twenty;
+using LeetCode2025.Problems.twentyone;
 using LeetCode2025.Problems.Two;
 using System.Net.WebSockets;
 using System.Security.Cryptography.X509Certificates;
@@ -55,6 +56,9 @@ namespace LeetCode2025
 
             fourteen.Strings = ["dog", "racecar", "car"];
             fourteen.RunProblem();
+
+            var twentyOne = new ProblemTwentyOne(new int[]{ 1,2,4 }, new int[]{ 2,3,4 });
+            twentyOne.RunProblem();
         }
     }
 }
