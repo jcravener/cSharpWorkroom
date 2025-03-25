@@ -21,19 +21,50 @@ namespace LeetCode2025.Problems.twentyone
             List2 = l3.head;
 
         }
-        
+
         public void RunProblem()
         {
-            ListNode tmpNode = new ListNode();
+            ListNode head = Solve();
+
+            while (head != null)
+            {
+                Console.WriteLine(head.val);
+                head = head.next;
+            }
+        }
+        
+        public ListNode Solve()
+        {
+            ListNode dummyNode = new ListNode(-1);
+            ListNode current = dummyNode;
 
             while (List1 != null && List2 != null)
             {
                 if(List1.val <= List2.val)
                 {
-                    
+                    current.next = List1;
+                    List1 = List1.next;
                 }
+                else
+                {
+                    current.next = List2;
+                    List2 = List2.next;
+                }
+
+                current = current.next;
             }
+
+            if(List1 != null)
+            {
+                current.next = List1;
+            }
+
+            if(List2 != null)
+            {
+                current.next = List2;
+            }
+
+            return dummyNode.next;
         }
-        
     }
 }
