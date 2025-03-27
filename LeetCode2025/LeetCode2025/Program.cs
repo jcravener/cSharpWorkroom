@@ -4,6 +4,7 @@ using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.Three;
 using LeetCode2025.Problems.Twenty;
 using LeetCode2025.Problems.twentyone;
+using LeetCode2025.Problems.TwentySix;
 using LeetCode2025.Problems.Two;
 using System.Net.WebSockets;
 using System.Security.Cryptography.X509Certificates;
@@ -59,6 +60,12 @@ namespace LeetCode2025
 
             var twentyOne = new ProblemTwentyOne(new int[]{ 1,2,4 }, new int[]{ 2,3,4 });
             twentyOne.RunProblem();
+
+            var twentSix = new ProblemTwentySix(new int[]{ 1, 1, 2 });
+            twentSix.RunProblem();
+
+            twentSix.Nums = new int[] { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+            twentSix.RunProblem();
         }
     }
 }
