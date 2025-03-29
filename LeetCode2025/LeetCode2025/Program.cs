@@ -3,6 +3,7 @@ using LeetCode2025.Problems.Nine;
 using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.Three;
 using LeetCode2025.Problems.Twenty;
+using LeetCode2025.Problems.Twentyeight;
 using LeetCode2025.Problems.twentyone;
 using LeetCode2025.Problems.TwentySeven;
 using LeetCode2025.Problems.TwentySix;
@@ -74,6 +75,13 @@ namespace LeetCode2025
             twentySeven.Nums = new int[] { 0, 1, 2, 2, 3, 0, 4, 2 };
             twentySeven.Value = 2;
             twentySeven.RunProblem();
+
+            var twentyEight = new ProblemTwentyEight("sadbutsad", "sad");
+            twentyEight.RunProblem();
+            
+            twentyEight.Haystack = "leetcode";
+            twentyEight.Needle = "leeto";
+            twentyEight.RunProblem();
         }
     }
 }
