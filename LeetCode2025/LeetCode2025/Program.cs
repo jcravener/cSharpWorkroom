@@ -1,6 +1,7 @@
 ﻿using LeetCode2025.Problems.Fourteen;
 using LeetCode2025.Problems.Nine;
 using LeetCode2025.Problems.Thirteen;
+using LeetCode2025.Problems.ThirtyFive;
 using LeetCode2025.Problems.Three;
 using LeetCode2025.Problems.Twenty;
 using LeetCode2025.Problems.Twentyeight;
@@ -86,6 +87,21 @@ namespace LeetCode2025
             twentyEight.Haystack = "a";
             twentyEight.Needle = "a";
             twentyEight.RunProblem();
+
+            var thirtyFive = new ProblemThirtyFive([1, 3, 5, 6], 5);
+            thirtyFive.RunProblem();
+
+            thirtyFive.Nums = new int[] { 1, 3, 5, 6 };
+            thirtyFive.Target = 2;
+            thirtyFive.RunProblem();
+
+            thirtyFive.Nums = new int[] { 1, 3, 5, 6 };
+            thirtyFive.Target = 7;
+            thirtyFive.RunProblem();
+
+            thirtyFive.Nums = new int[] { 1 };
+            thirtyFive.Target = 1;
+            thirtyFive.RunProblem();
 
         }
     }
