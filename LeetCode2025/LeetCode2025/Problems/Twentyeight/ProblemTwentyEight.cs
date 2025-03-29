@@ -32,7 +32,7 @@ namespace LeetCode2025.Problems.Twentyeight
 
             for(int i = 0; i < Haystack.Length; i++)
             {
-                if(i + len > Haystack.Length - 1)
+                if(i + len - 1 >= Haystack.Length)
                 {
                     return -1;
                 }

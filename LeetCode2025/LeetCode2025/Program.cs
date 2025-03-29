@@ -82,6 +82,11 @@ namespace LeetCode2025
             twentyEight.Haystack = "leetcode";
             twentyEight.Needle = "leeto";
             twentyEight.RunProblem();
+
+            twentyEight.Haystack = "a";
+            twentyEight.Needle = "a";
+            twentyEight.RunProblem();
+
         }
     }
 }
