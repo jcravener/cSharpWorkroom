@@ -1,6 +1,7 @@
 ﻿using LeetCode2025.Problems.FiftyEight;
 using LeetCode2025.Problems.Fourteen;
 using LeetCode2025.Problems.Nine;
+using LeetCode2025.Problems.SixtySix;
 using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.ThirtyFive;
 using LeetCode2025.Problems.Three;
@@ -113,6 +114,8 @@ namespace LeetCode2025
             problemFiftyEight.S = "luffy is still joyboy";
             problemFiftyEight.RunProblem();
 
+            var problemSixtySix = new ProblemSixtySix([1,2,3]);
+            problemSixtySix.RunProblem();
         }
     }
 }
