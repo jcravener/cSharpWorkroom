@@ -1,4 +1,5 @@
-﻿using LeetCode2025.Problems.Fourteen;
+﻿using LeetCode2025.Problems.FiftyEight;
+using LeetCode2025.Problems.Fourteen;
 using LeetCode2025.Problems.Nine;
 using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.ThirtyFive;
@@ -102,6 +103,15 @@ namespace LeetCode2025
             thirtyFive.Nums = new int[] { 1 };
             thirtyFive.Target = 1;
             thirtyFive.RunProblem();
+
+            var problemFiftyEight = new ProblemFiftyEight("Hello World");
+            problemFiftyEight.RunProblem();
+
+            problemFiftyEight.S = "   fly me   to   the moon  ";
+            problemFiftyEight.RunProblem();
+
+            problemFiftyEight.S = "luffy is still joyboy";
+            problemFiftyEight.RunProblem();
 
         }
     }
