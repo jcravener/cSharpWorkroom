@@ -118,7 +118,7 @@ namespace LeetCode2025
             var problemSixtySix = new ProblemSixtySix([1,2,3]);
             problemSixtySix.RunProblem();
 
-            var problemSixtySeven = new ProblemSixtySeven("11", "0");
+            var problemSixtySeven = new ProblemSixtySeven("100", "110010");
             problemSixtySeven.RunProblem();
         }
     }

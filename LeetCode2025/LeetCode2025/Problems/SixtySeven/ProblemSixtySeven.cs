@@ -26,25 +26,25 @@ namespace LeetCode2025.Problems.SixtySeven
         private string Solve()
         {
             (string large, string small) = GetLargeSmall(A, B);
-            int index = small.Length - 1;
+            int largePointer = large.Length - 1;
+            int smallPointer = small.Length - 1;
 
             bool carry = false;
             string answer = string.Empty;
 
-            while(index >= 0)
+            while(smallPointer >= 0)
             {
-                (carry, answer) = UpdateAnswer(carry, answer, large[index], small[index]);
-                index--;
+                (carry, answer) = UpdateAnswer(carry, answer, large[largePointer], small[smallPointer]);
+                largePointer--;
+                smallPointer--;
             }
 
             if (large.Length != small.Length)
             {
-                index = large.Length - small.Length - 1;
-
-                while(index >= 0)
+                while(largePointer >= 0)
                 {
-                    (carry, answer) = UpdateAnswer(carry, answer, large[index], '0');
-                    index--;
+                    (carry, answer) = UpdateAnswer(carry, answer, large[largePointer], '0');
+                    largePointer --;
                 }
             }
 
