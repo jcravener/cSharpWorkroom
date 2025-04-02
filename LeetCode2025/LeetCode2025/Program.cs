@@ -1,6 +1,7 @@
 ﻿using LeetCode2025.Problems.FiftyEight;
 using LeetCode2025.Problems.Fourteen;
 using LeetCode2025.Problems.Nine;
+using LeetCode2025.Problems.SixtySeven;
 using LeetCode2025.Problems.SixtySix;
 using LeetCode2025.Problems.Thirteen;
 using LeetCode2025.Problems.ThirtyFive;
@@ -116,6 +117,9 @@ namespace LeetCode2025
 
             var problemSixtySix = new ProblemSixtySix([1,2,3]);
             problemSixtySix.RunProblem();
+
+            var problemSixtySeven = new ProblemSixtySeven("11", "0");
+            problemSixtySeven.RunProblem();
         }
     }
 }

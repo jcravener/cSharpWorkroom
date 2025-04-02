@@ -1,0 +1,114 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LeetCode2025.Problems.SixtySeven
+{
+    public class ProblemSixtySeven : ProblemBase
+    {
+        public string A { get; set; }
+        public string B { get; set; }
+
+        public ProblemSixtySeven(string a, string b )
+        {
+            A = a;
+            B = b;
+        }
+
+        public void RunProblem()
+        {
+            Console.WriteLine(Solve());
+        }
+
+        private string Solve()
+        {
+            (string large, string small) = GetLargeSmall(A, B);
+            int index = small.Length - 1;
+
+            bool carry = false;
+            string answer = string.Empty;
+
+            while(index >= 0)
+            {
+                (carry, answer) = UpdateAnswer(carry, answer, large[index], small[index]);
+                index--;
+            }
+
+            if (large.Length != small.Length)
+            {
+                index = large.Length - small.Length - 1;
+
+                while(index >= 0)
+                {
+                    (carry, answer) = UpdateAnswer(carry, answer, large[index], '0');
+                    index--;
+                }
+            }
+
+            if (carry)
+            {
+                (carry, answer) = UpdateAnswer(carry, answer);
+            }
+
+            return answer;
+        }
+
+        private (string, string) GetLargeSmall(string a, string b)
+        {
+            if (a.Length > b.Length)
+            {
+                return (a, b);
+            }
+            
+            return (b, a);
+        }
+
+        private (bool, string) UpdateAnswer(bool carry, string answer, char a = '0', char b ='0')
+        {
+            int val = int.Parse(a.ToString()) + int.Parse(b.ToString());
+
+            if (val == 0)
+            {
+                if (carry) // 001
+                {
+                    answer = $"1{answer}";
+                }
+                else // 00
+                {
+                    answer = $"0{answer}";
+                }
+                carry = false;
+            }
+            else if (val == 1)
+            {
+                if (carry) // 101
+                {
+                    answer = $"0{answer}";
+                    carry = true;
+                }
+                else // 10
+                {
+                    answer = $"1{answer}";
+                    carry = false;
+                }
+            }
+            else // val == 2
+            {
+                if (carry) // 111
+                {
+                    answer = $"1{answer}";
+                }
+                else // 11
+                {
+                    answer = $"0{answer}";
+                }
+                carry = true;
+            }
+
+            return (carry, answer);
+        }
+    }
+}
