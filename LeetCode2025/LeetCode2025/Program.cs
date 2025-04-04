@@ -1,4 +1,5 @@
-﻿using LeetCode2025.Problems.FiftyEight;
+﻿using LeetCode2025.Problems.EightyThree;
+using LeetCode2025.Problems.FiftyEight;
 using LeetCode2025.Problems.Fourteen;
 using LeetCode2025.Problems.Nine;
 using LeetCode2025.Problems.SixtySeven;
@@ -12,6 +13,7 @@ using LeetCode2025.Problems.twentyone;
 using LeetCode2025.Problems.TwentySeven;
 using LeetCode2025.Problems.TwentySix;
 using LeetCode2025.Problems.Two;
+using LeetCode2025.Problems.Util;
 using System.Net.WebSockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -120,6 +122,11 @@ namespace LeetCode2025
 
             var problemSixtySeven = new ProblemSixtySeven("100", "110010");
             problemSixtySeven.RunProblem();
+
+            var list = new LinkedList([1, 1, 2, 3, 3, 3, 3, 3]);
+
+            var problemEightyThree = new ProblemEightyThree(list.head);
+            problemEightyThree.RunProblem();
         }
     }
 }
