@@ -4,20 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeetCode2025.Problems.Two
+namespace LeetCode2025.Problems.Util
 {
-    public class ListNode
-    {
-        public int val;
-        public ListNode? next;
-
-        public ListNode(int val = 0, ListNode next = null)
-        {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
     public class LinkedList
     {
         public ListNode? head { get; set; }
@@ -32,8 +20,8 @@ namespace LeetCode2025.Problems.Two
             foreach (var val in vals)
             {
                 ListNode node = new ListNode(val);
-                
-                if(head == null)
+
+                if (head == null)
                 {
                     head = node;
                     tail = node;
