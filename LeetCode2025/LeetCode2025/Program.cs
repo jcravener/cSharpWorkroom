@@ -1,4 +1,5 @@
 ﻿using LeetCode2025.Problems.EightyThree;
+using LeetCode2025.Problems.EigthtyEight;
 using LeetCode2025.Problems.FiftyEight;
 using LeetCode2025.Problems.Fourteen;
 using LeetCode2025.Problems.Nine;
@@ -127,6 +128,22 @@ namespace LeetCode2025
 
             var problemEightyThree = new ProblemEightyThree(list.head);
             problemEightyThree.RunProblem();
+
+            var problemEightyEight = new ProblemEightyEight([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3);
+            problemEightyEight.RunProblem();
+
+            problemEightyEight.Nums1 = [1];
+            problemEightyEight.Nums2 = [];
+            problemEightyEight.M = 1;
+            problemEightyEight.N = 0;
+            problemEightyEight.RunProblem();
+
+            problemEightyEight.Nums1 = [0];
+            problemEightyEight.Nums2 = [1];
+            problemEightyEight.M = 0;
+            problemEightyEight.N = 1;
+            problemEightyEight.RunProblem();
+
         }
     }
 }
