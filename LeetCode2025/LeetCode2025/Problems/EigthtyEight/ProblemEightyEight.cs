@@ -28,35 +28,30 @@ namespace LeetCode2025.Problems.EigthtyEight
 
         private int[] Solve()
         {
-            int[] dummy = Nums1;
-            int indexDummy = 0;
-            int indexM = 0;
-            int indexN = 0;
+            int index = M + N - 1;
+            M--;
+            N--;
 
-            if (M == 0)
+            // Walking through the arrays backwards
+            // Comparing each value to one another
+            // Inserting the largest or (equal) to the last possition in the longer array
+            // Moving the poiter of the array in which the value was taken.
+            // Always moving the pointer of the array we are inserting into 
+            
+            while (M >= 0 && N >= 0)
             {
-                return Nums2;
-            }
-
-            if (N == 0)
-            {
-                return Nums1;
-            }
-
-            // TODO: This is not solved
-
-            while(indexM <= M + N)
-            {
-                if (dummy[indexDummy] <= Nums2[indexN])
+                if (Nums2[N] >= Nums1[M])
                 {
-                    Nums1[indexDummy] = dummy[indexDummy];
-                    indexDummy++;
+                    Nums1[index] = Nums2[N];
+                    N--;
                 }
                 else
                 {
-                    Nums1[indexDummy] = Nums2[indexN];
-                    indexN++;
+                    Nums1[index] = Nums1[M];
+                    M--;
                 }
+
+                index--;
             }
 
             return Nums1;
