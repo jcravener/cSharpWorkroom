@@ -54,9 +54,13 @@ namespace LeetCode2025.Problems.EigthtyEight
                 index--;
             }
 
-            Nums1[index] = index >= 0 && M >= 0 
-                ? Nums1[M] 
-                : Nums2[N];
+            while(index >= 0)
+            {
+                Nums1[index] = M >= 0
+                    ? Nums1[M--]
+                    : Nums2[N--];
+                index--;
+            }
 
             return Nums1;
         }
