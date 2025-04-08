@@ -144,6 +144,11 @@ namespace LeetCode2025
             problemEightyEight.N = 1;
             problemEightyEight.RunProblem();
 
+            problemEightyEight.Nums1 = [2,0];
+            problemEightyEight.Nums2 = [1];
+            problemEightyEight.M = 1;
+            problemEightyEight.N = 1;
+            problemEightyEight.RunProblem();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace LeetCode2025.Problems.EigthtyEight
         }
 
         private int[] Solve()
-        {
+        {            
             int index = M + N - 1;
             M--;
             N--;
@@ -37,8 +37,9 @@ namespace LeetCode2025.Problems.EigthtyEight
             // Inserting the largest or (equal) to the last possition in the longer array
             // Moving the poiter of the array in which the value was taken.
             // Always moving the pointer of the array we are inserting into 
-            
+
             while (M >= 0 && N >= 0)
+            //while (index >= 0)
             {
                 if (Nums2[N] >= Nums1[M])
                 {
@@ -50,9 +51,12 @@ namespace LeetCode2025.Problems.EigthtyEight
                     Nums1[index] = Nums1[M];
                     M--;
                 }
-
                 index--;
             }
+
+            Nums1[index] = index >= 0 && M >= 0 
+                ? Nums1[M] 
+                : Nums2[N];
 
             return Nums1;
         }
