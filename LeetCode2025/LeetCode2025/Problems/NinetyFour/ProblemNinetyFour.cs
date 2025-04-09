@@ -12,23 +12,29 @@ namespace LeetCode2025.Problems.NinetyFour
     {
         public TreeNode Node { get; set; }
         
-        public void RunProblem(TreeNode node)
+        public ProblemNinetyFour(IList<int?> ints)
         {
-            Node = node;
-        }
+            var tree = new BinarySerachTree();
+            
+            foreach (int i in ints)
+            {
+                tree.Insert(i);
+            }
 
+            Node = tree.Root;
+        }
+        
+        
+        public void RunProblem()
+        {
+            Solve();
+        }
 
         private void Solve()
         {
             List<int> list = new();
 
-            Traverse(Node, list);
-
-            int[] ints = new int[list.Count];
-
-            foreach (int i in list) ints[i] = i;
-
-            Console.WriteLine(ToString(ints));
+            Console.WriteLine(ToString(list));
         }
 
 

@@ -14,11 +14,11 @@ namespace LeetCode2025.Problems.Util
 
         public TreeNode? Right { get; set; }
 
-        public TreeNode(int value, TreeNode? left, TreeNode? right)
+        public TreeNode(int value)
         {
             Value = value;
-            Left = left;
-            Right = right;
+            Left = null;
+            Right = null;
         }
     }
 }
