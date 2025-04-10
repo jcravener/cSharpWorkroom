@@ -16,7 +16,7 @@ namespace LeetCode2025.Problems.NinetyFour
         {
             var tree = new BinarySerachTree();
             
-            foreach (int i in ints)
+            foreach (int? i in ints)
             {
                 tree.Insert(i);
             }
@@ -38,7 +38,7 @@ namespace LeetCode2025.Problems.NinetyFour
         }
 
 
-        private void Traverse(TreeNode? node, List<int> list)
+        private void Traverse(TreeNode? node, List<int?> list)
         {
             if(node != null)
             {

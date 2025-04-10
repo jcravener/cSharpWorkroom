@@ -10,12 +10,12 @@ namespace LeetCode2025.Problems.Util
     {
         public TreeNode Root { get; set; }
 
-        public void Insert(int val)
+        public void Insert(int? val)
         {
             Root = InsertNode(Root, val);
         }
 
-        private TreeNode InsertNode(TreeNode root, int val)
+        private TreeNode InsertNode(TreeNode root, int? val)
         {
             if (root == null)
             {
