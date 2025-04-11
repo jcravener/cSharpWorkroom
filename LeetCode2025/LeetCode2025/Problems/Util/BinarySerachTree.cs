@@ -8,18 +8,26 @@ namespace LeetCode2025.Problems.Util
 {
     public class BinarySerachTree
     {
-        public TreeNode Root { get; set; }
+        public TreeNode? Root { get; set; }
 
+        public BinarySerachTree()
+        {
+            Root = null;
+        }
+        
         public void Insert(int? val)
         {
             Root = InsertNode(Root, val);
         }
 
-        private TreeNode InsertNode(TreeNode root, int? val)
+        private TreeNode? InsertNode(TreeNode? root, int? val)
         {
+            if (val == null) return root;
+            
             if (root == null)
             {
-                root = new TreeNode(val);
+                root = new TreeNode((int)val);
+                return root;
             }
 
             if(val < root.Value)

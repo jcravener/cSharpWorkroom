@@ -10,7 +10,7 @@ namespace LeetCode2025.Problems.NinetyFour
 {
     public class ProblemNinetyFour : ProblemBase
     {
-        public TreeNode Node { get; set; }
+        public TreeNode? Node { get; set; }
         
         public ProblemNinetyFour(IList<int?> ints)
         {
@@ -34,11 +34,13 @@ namespace LeetCode2025.Problems.NinetyFour
         {
             List<int> list = new();
 
+            Traverse(Node, list);
+
             Console.WriteLine(ToString(list));
         }
 
 
-        private void Traverse(TreeNode? node, List<int?> list)
+        private void Traverse(TreeNode? node, List<int> list)
         {
             if(node != null)
             {
