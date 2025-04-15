@@ -161,8 +161,7 @@ namespace LeetCode2025
             var problemNinetyFour = new ProblemNinetyFour([1, null, 2, 3]);
             problemNinetyFour.RunProblem();
 
-            var problemOneHundred = new ProblemOneHundred([1, 2, 1], [1, 1, 2]);
-            problemOneHundred.RunProblem();
+            var problemOneHundred = new ProblemOneHundred(1,1);
         }
     }
 }

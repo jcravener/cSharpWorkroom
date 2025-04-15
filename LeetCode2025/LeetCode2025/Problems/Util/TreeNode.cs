@@ -20,5 +20,29 @@ namespace LeetCode2025.Problems.Util
             Left = null;
             Right = null;
         }
+
+        public void InsertLeft(TreeNode node, int val)
+        {
+            if (node.Left == null)
+            {
+                node.Left = new TreeNode(val);
+            }
+            else
+            {
+                InsertLeft(node.Left, val);
+            }
+        }
+
+        public void InsertRight(TreeNode node, int val)
+        {
+            if (node.Right == null)
+            {
+                node.Right = new TreeNode(val);
+            }
+            else
+            {
+                InsertLeft(node.Right, val);
+            }
+        }
     }
 }
