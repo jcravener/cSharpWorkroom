@@ -12,19 +12,58 @@ namespace LeetCode2025.Problems.OneHundred
         public TreeNode A { get; set; }
         public TreeNode B { get; set; }
 
-        public ProblemOneHundred(int a, int b)
+        public ProblemOneHundred(int example)
         {
-            A = new TreeNode(a); 
-            B = new TreeNode(b);
+            switch (example)
+            {
+                case 1:
+                    A = new TreeNode(1);
+                    A.InsertLeft(A, 2);
+                    A.InsertRight(A, 3);
+
+                    B = new TreeNode(1);
+                    B.InsertLeft(B, 2);
+                    B.InsertRight(B, 3);
+                    
+                    break;
+                case 2:
+                    A = new TreeNode(1);
+                    A.InsertLeft(A, 2);
+                    
+                    B = new TreeNode(1);
+                    B.InsertRight(B, 3);
+                    
+                    break;
+                case 3:
+                    A = new TreeNode(1);
+                    A.InsertLeft(A, 2);
+                    A.InsertRight(A, 1);
+
+                    B = new TreeNode(1);
+                    B.InsertLeft(B, 1);
+                    B.InsertRight(B, 2);
+
+                    break;
+
+                default:
+                    throw new Exception($"Example {example} is unknown.");
+            }
         }
 
         public void RunProblem()
         {
+            Console.WriteLine(Traverse(A, B));
         }
 
-        private bool Solve()
+        private bool Traverse(TreeNode a, TreeNode b)
         {
-            return true;
+            if(a == null && b == null) return true;
+
+            if (a == null || b == null) return false;
+
+            if (a.Value != b.Value) return false;
+
+            return Traverse(a.Left, b.Left) && Traverse(a.Right, b.Right);
         }
     }
 }
