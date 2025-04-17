@@ -5,6 +5,7 @@ using LeetCode2025.Problems.Fourteen;
 using LeetCode2025.Problems.Nine;
 using LeetCode2025.Problems.NinetyFour;
 using LeetCode2025.Problems.OneHundred;
+using LeetCode2025.Problems.OneHundredOne;
 using LeetCode2025.Problems.SixtySeven;
 using LeetCode2025.Problems.SixtySix;
 using LeetCode2025.Problems.Thirteen;
@@ -163,6 +164,9 @@ namespace LeetCode2025
 
             var problemOneHundred = new ProblemOneHundred(2);
             problemOneHundred.RunProblem();
+
+            var problemOnehundredOne = new ProblemOneHundredOne(1);
+            problemOnehundredOne.RunProblem();
         }
     }
 }
