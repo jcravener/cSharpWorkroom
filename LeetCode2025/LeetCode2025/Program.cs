@@ -1,4 +1,5 @@
-﻿using LeetCode2025.Problems.EightyThree;
+﻿using LeetCode2025.Problems.Easy;
+using LeetCode2025.Problems.EightyThree;
 using LeetCode2025.Problems.EigthtyEight;
 using LeetCode2025.Problems.FiftyEight;
 using LeetCode2025.Problems.Fourteen;
@@ -171,6 +172,9 @@ namespace LeetCode2025
 
             var problemOnehundredFour = new ProblemOneNumdredFour(1);
             problemOnehundredFour.RunProblem();
+
+            var problemOneHundredEight = new ProblemOnehundredEight([-10, -3, 0, 5, 9]);
+            problemOneHundredEight.RunProblem();
         }
     }
 }
