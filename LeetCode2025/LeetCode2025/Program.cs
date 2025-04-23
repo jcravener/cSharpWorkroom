@@ -175,6 +175,9 @@ namespace LeetCode2025
 
             var problemOneHundredEight = new ProblemOnehundredEight([-10, -3, 0, 5, 9]);
             problemOneHundredEight.RunProblem();
+
+            var problemOnhundredTen = new ProblemOnehundredTen(2);
+            problemOnhundredTen.RunProblem();
         }
     }
 }
