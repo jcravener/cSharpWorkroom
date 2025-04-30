@@ -45,20 +45,39 @@ namespace LeetCode2025.Problems.Easy
             Console.WriteLine(IsBallanced(Root));
         }
 
+        //private bool IsBallanced(TreeNode node)
+        //{
+        //    int left = MaxDepth(node.Left);
+        //    int right = MaxDepth(node.Right);
+
+        //    return Math.Abs(left - right) <= 1;
+        //}
+
+        //private int MaxDepth(TreeNode node)
+        //{
+        //    if (node == null) return 0;
+
+        //    return 1 + Math.Max(MaxDepth(node.Left), MaxDepth(node.Right));
+        //}
+
         private bool IsBallanced(TreeNode node)
         {
-            int left = MaxDepth(node.Left);
-
-            int right = MaxDepth(node.Right);
-
-            return Math.Abs(left - right) <= 1;
+            return BallanceCheck(node) != -1;
         }
 
-        private int MaxDepth(TreeNode node)
+        private int BallanceCheck(TreeNode node)
         {
             if (node == null) return 0;
 
-            return 1 + Math.Max(MaxDepth(node.Left), MaxDepth(node.Right));
+            int left = BallanceCheck(node.Left);
+            int right = BallanceCheck(node.Right);
+
+            if(left == -1 || right == -1 || Math.Abs(left - right) > 1)
+            {
+                return -1;
+            }
+
+            return 1 + Math.Max(left, right);
         }
     }
 }
