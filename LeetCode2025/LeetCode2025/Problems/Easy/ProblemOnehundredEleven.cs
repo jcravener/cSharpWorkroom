@@ -30,5 +30,30 @@ namespace LeetCode2025.Problems.Easy
                     throw new Exception($"Example {example} unknown.");
             }
         }
+
+        public void RunProblem()
+        {
+            Console.WriteLine(BFSDepthCheck(Root));
+        }
+
+        private int BFSDepthCheck(TreeNode node)
+        {
+            Queue<(TreeNode, int)> queue = new();
+
+            queue.Enqueue((node, 1));
+
+            while (queue.Count > 0)
+            {
+                var (n, i) = queue.Dequeue();
+
+                if (n.Left == null && n.Right == null) return i;
+
+                if(n.Left != null) queue.Enqueue((n.Left, i+1));
+
+                if(n.Right != null) queue.Enqueue((n.Right, i+1));
+            }
+
+            return -1;
+        }
     }
 }
