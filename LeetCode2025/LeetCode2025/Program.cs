@@ -181,6 +181,9 @@ namespace LeetCode2025
 
             var problemOnehundredEleven = new ProblemOnehundredEleven(2);
             problemOnehundredEleven.RunProblem();
+
+            var problemOnehundredTwelve = new ProblemOnehundredTwevle(1);
+            problemOnehundredTwelve.RunProblem();
         }
     }
 }
