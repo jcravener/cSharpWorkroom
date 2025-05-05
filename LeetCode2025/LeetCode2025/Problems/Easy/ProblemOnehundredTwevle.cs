@@ -30,7 +30,7 @@ namespace LeetCode2025.Problems.Easy
                     Root.Right = new TreeNode(8);
                     Root.Right.Left = new TreeNode(13);
                     Root.Right.Right = new TreeNode(4);
-                    Root.Right.Right = new TreeNode(1);
+                    Root.Right.Right.Right = new TreeNode(1);
                 
                 break;
                 default:
@@ -49,10 +49,7 @@ namespace LeetCode2025.Problems.Easy
 
             if (node.Left == null && node.Right == null && node.Value == sum) return true;
 
-            var left = PathSum(node.Left, sum - node.Value);
-            var right = PathSum(node.Right, sum - node.Value);
-
-            return left || right;
+            return PathSum(node.Left, sum - node.Value) || PathSum(node.Right, sum - node.Value);
         }
     }
 }
