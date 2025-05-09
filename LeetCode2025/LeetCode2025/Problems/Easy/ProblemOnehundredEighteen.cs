@@ -28,21 +28,50 @@ namespace LeetCode2025.Problems.Easy
         private IList<IList<int>> Solve()
         {
             var triangle = new List<IList<int>>();
-            
-            for(int i  = 1; i < NumRows; i++)
+
+            int midpoint;
+
+            for (int i  = 1; i < NumRows; i++)
             {
                 List<int> var = new(new int[i]);
 
                 var[0] = 1; var[var.Count - 1] = 1;
 
-                //int adj = i-1;
+                int adj = i - 1;
 
-                //if(i > 2)
-                //{
-                //    var[1] = adj; var[var.Count - 2] = adj;
-                //}
+                if (i > 2)
+                {
+                    var[1] = adj; var[var.Count - 2] = adj;
+                }
 
                 triangle.Add(var);
+            }
+
+            IList<int> row = new List<int>();
+            IList<int> prevRow = new List<int>();
+
+            for (int r = 0; r < triangle.Count; r++)
+            {
+                row = triangle[r];
+
+                if(r < 4) continue;
+                prevRow = triangle[r - 1];
+                
+                midpoint = row.Count / 2;
+                
+                for(int i = 2; i < midpoint; i++)
+                {
+                    int val = prevRow[i-1] + prevRow[i];
+                    row[i] = val;
+
+                    int j = row.Count - 1;
+                    row[j - i] = val;
+                }
+
+                if( row.Count%2 != 0 )
+                {
+                    row[midpoint] = prevRow[midpoint]*2;
+                }
             }
 
             return triangle;
