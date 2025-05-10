@@ -29,49 +29,36 @@ namespace LeetCode2025.Problems.Easy
         {
             var triangle = new List<IList<int>>();
 
-            int midpoint;
-
-            for (int i  = 1; i < NumRows; i++)
-            {
-                List<int> var = new(new int[i]);
-
-                var[0] = 1; var[var.Count - 1] = 1;
-
-                int adj = i - 1;
-
-                if (i > 2)
-                {
-                    var[1] = adj; var[var.Count - 2] = adj;
-                }
-
-                triangle.Add(var);
-            }
-
-            IList<int> row = new List<int>();
             IList<int> prevRow = new List<int>();
 
-            for (int r = 0; r < triangle.Count; r++)
+            for (int r = 0; r < NumRows; r++)
             {
-                row = triangle[r];
+                var row = new List<int>(new int[r + 1]);
+                triangle.Add(row);
 
-                if(r < 4) continue;
-                prevRow = triangle[r - 1];
-                
-                midpoint = row.Count / 2;
-                
-                for(int i = 2; i < midpoint; i++)
+                row[0] = 1;
+                row[row.Count - 1] = 1;
+
+                if (r > 1)
                 {
-                    int val = prevRow[i-1] + prevRow[i];
-                    row[i] = val;
-
-                    int j = row.Count - 1;
-                    row[j - i] = val;
+                    row[1] = r;
+                    row[row.Count - 2] = r;
                 }
 
-                if( row.Count%2 != 0 )
+                if (r > 3)
                 {
-                    row[midpoint] = prevRow[midpoint]*2;
+                    var mid = r / 2;
+
+                    for (int i = 2; i <= mid; i++)
+                    {
+                        int val = prevRow[i - 1] + prevRow[i];
+
+                        row[i] = val;
+                        row[row.Count - 1 - i] = val;
+                    }
                 }
+
+                prevRow = row;
             }
 
             return triangle;
