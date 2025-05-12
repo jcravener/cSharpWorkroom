@@ -196,6 +196,15 @@ namespace LeetCode2025
 
             problemOneHundredTwentyone.Prices = [2, 1, 4];
             problemOneHundredTwentyone.RunProblem();
+
+            var problemOnehundredTwentyfive = new ProblemOnehundredTwentyfive("A man, a plan, a canal: Panama");
+            problemOnehundredTwentyfive.RunProblem();
+
+            problemOnehundredTwentyfive.Input = "race a car";
+            problemOnehundredTwentyfive.RunProblem();
+
+            problemOnehundredTwentyfive.Input = " ";
+            problemOnehundredTwentyfive.RunProblem();
         }
     }
 }
