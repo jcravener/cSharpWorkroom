@@ -187,6 +187,12 @@ namespace LeetCode2025
 
             var problemOnehundredEighteen = new ProblemOnehundredEighteen(6);
             problemOnehundredEighteen.RunProblem();
+
+            var problemOneHundredTwentyone = new ProblemOnehundredTwentyone([7, 1, 5, 3, 6, 4]);
+            problemOneHundredTwentyone.RunProblem();
+
+            problemOneHundredTwentyone.Prices = [7, 6, 4, 3, 1];
+            problemOneHundredTwentyone.RunProblem();
         }
     }
 }
