@@ -28,9 +28,16 @@ namespace LeetCode2025.Problems.Easy
             {
                 for(int j = i + 1; j < Prices.Length; j++)
                 {
-                    int val = Prices[j] - Prices[i];
+                    if(Prices[i] < Prices[j])
+                    {
+                        int val = Prices[j] - Prices[i];
 
-                    if (profit < val) profit = val;
+                        profit = Math.Max(profit, val);
+                    }
+                    else
+                    {
+                        i = j;
+                    }
                 }
             }
 

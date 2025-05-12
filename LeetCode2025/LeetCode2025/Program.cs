@@ -193,6 +193,9 @@ namespace LeetCode2025
 
             problemOneHundredTwentyone.Prices = [7, 6, 4, 3, 1];
             problemOneHundredTwentyone.RunProblem();
+
+            problemOneHundredTwentyone.Prices = [2, 1, 4];
+            problemOneHundredTwentyone.RunProblem();
         }
     }
 }
