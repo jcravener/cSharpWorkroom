@@ -205,6 +205,15 @@ namespace LeetCode2025
 
             problemOnehundredTwentyfive.Input = " ";
             problemOnehundredTwentyfive.RunProblem();
+
+            var problemOnehundredThritysix = new ProblemOnehundredThritysix([2, 2, 1]);
+            problemOnehundredThritysix.RunProblem();
+
+            problemOnehundredThritysix.Nums = [4, 1, 2, 1, 2];
+            problemOnehundredThritysix.RunProblem();
+
+            problemOnehundredThritysix.Nums = [1];
+            problemOnehundredThritysix.RunProblem();
         }
     }
 }
