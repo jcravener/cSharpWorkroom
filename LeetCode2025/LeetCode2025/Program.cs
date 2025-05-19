@@ -217,6 +217,9 @@ namespace LeetCode2025
 
             var problemOnehundredFourtyone = new ProblemOnehundredFourtyone(1);
             problemOnehundredFourtyone.RunProblem();
+
+            var problem145 = new ProblemOnehundredFourtyfive(1);
+            problem145.RunProblem();
         }
     }
 }
