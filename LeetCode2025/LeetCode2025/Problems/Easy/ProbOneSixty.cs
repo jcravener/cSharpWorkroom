@@ -38,7 +38,7 @@ namespace LeetCode2025.Problems.Easy
 
         public void RunProblem()
         {
-            ListNode? result = Solve(true);
+            ListNode? result = Solve();
 
             if(result == null)
             {
@@ -70,6 +70,22 @@ namespace LeetCode2025.Problems.Easy
             }
 
             return null;
+        }
+
+        private ListNode Solve()
+        {
+            ListNode? A = ListA;
+            ListNode? B = ListB;
+
+            while(A != B)
+            {
+                //A = (A == null) ? A = ListB : A.next;
+                //B = (B == null) ? B = ListA : B.next;
+                A = (A != null) ? A.next : ListB;
+                B = (B != null) ? B.next : ListA;
+            }
+
+            return A;
         }
     }
 }
