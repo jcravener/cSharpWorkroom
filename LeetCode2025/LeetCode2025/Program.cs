@@ -220,6 +220,9 @@ namespace LeetCode2025
 
             var problem145 = new ProblemOnehundredFourtyfive(1);
             problem145.RunProblem();
+
+            var problem160 = new ProbOneSixty(1);
+            problem160.RunProblem();
         }
     }
 }
