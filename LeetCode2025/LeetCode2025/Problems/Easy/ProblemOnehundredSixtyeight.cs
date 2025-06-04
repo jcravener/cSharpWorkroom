@@ -27,27 +27,21 @@ namespace LeetCode2025.Problems.Easy
         {
             if (num <= 0) throw new Exception("number must be greater than 0");
 
-            if (num <= 26) return GetChar(num).ToString();
+            num--;
+
+            if (num < 26) return GetChar(num + 1).ToString();
 
             int rem = num % 26;
             int quo = num / 26;
 
-            return Solve(quo) + GetChar(rem);
-        }
-
-        private int GetNumber(char c)
-        {
-            if ('A' < c && 'Z' > c) throw new ArgumentException("Only chars A-Z allowed.");
-
-            return ((int)c - 64);
+            return Solve(quo) + GetChar(rem + 1);
         }
 
         private char GetChar(int i)
         {
             if (i < 1 || i > 26) throw new ArgumentException("Number must be between 1 and 26");
 
-            return (char)(i + 64);
+            return (char)('A' + (i - 1));
         }
-
     }
 }
