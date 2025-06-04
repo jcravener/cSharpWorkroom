@@ -223,6 +223,9 @@ namespace LeetCode2025
 
             var problem160 = new ProbOneSixty(1);
             problem160.RunProblem();
+
+            var problem168 = new ProblemOnehundredSixtyeight(122);
+            problem168.runProblem();
         }
     }
 }
