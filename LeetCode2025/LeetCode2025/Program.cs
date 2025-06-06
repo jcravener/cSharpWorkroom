@@ -230,7 +230,7 @@ namespace LeetCode2025
             var problem169 = new ProblemOnehundredSixtynine([2, 2, 1, 1, 1, 2, 2]);
             problem169.RunProblem();
 
-            var problem171 = new ProblemOnehundredSeventyone("ABC");
+            var problem171 = new ProblemOnehundredSeventyone("ZY");
             problem171.RunProblem();
         }
     }

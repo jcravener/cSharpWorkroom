@@ -26,9 +26,18 @@ namespace LeetCode2025.Problems.Easy
 
             List<int> returnList = new();
 
-            foreach( char c in columnTitle)
+
+            for(int i = columnTitle.Length - 1; i >= 0; i--)
             {
-                returnList.Add(GetNumber(c));
+                char c = columnTitle[i];
+
+                int number = GetNumber(c);
+                int pow = columnTitle.Length - i - 1;
+
+                double val = System.Math.Pow(26, pow)*number;
+
+
+                returnList.Add((int)val);
             }
 
             return returnList;
