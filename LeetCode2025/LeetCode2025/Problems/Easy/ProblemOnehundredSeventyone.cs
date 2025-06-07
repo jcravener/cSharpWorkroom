@@ -8,7 +8,7 @@ namespace LeetCode2025.Problems.Easy
 {
     internal class ProblemOnehundredSeventyone : ProblemBase
     {
-        private string ColumnTitle { get; set; }
+        public string ColumnTitle { get; set; }
 
         public ProblemOnehundredSeventyone(string columnTitle)
         {
@@ -17,7 +17,13 @@ namespace LeetCode2025.Problems.Easy
 
         public void RunProblem()
         {
-            Console.WriteLine(ProblemBase.ToString(Solve()));
+            Console.WriteLine(ColumnTitle);
+
+            var foo = Solve();
+
+            Console.WriteLine(ProblemBase.ToString(foo));
+
+            Console.WriteLine(AddNums(foo));
         }
 
         private IEnumerable<int> Solve()
@@ -26,18 +32,14 @@ namespace LeetCode2025.Problems.Easy
 
             List<int> returnList = new();
 
+            var power = columnTitle.Length - 1;
 
-            for(int i = columnTitle.Length - 1; i >= 0; i--)
+            foreach(char c in columnTitle)
             {
-                char c = columnTitle[i];
-
                 int number = GetNumber(c);
-                int pow = columnTitle.Length - i - 1;
-
-                double val = System.Math.Pow(26, pow)*number;
-
-
+                double val = Math.Pow(26, power) * number;
                 returnList.Add((int)val);
+                power--;
             }
 
             return returnList;
@@ -46,6 +48,18 @@ namespace LeetCode2025.Problems.Easy
         private int GetNumber(char c)
         {
             return ((int)c - 64);
-        } 
+        }
+
+        private int AddNums(IEnumerable<int> nums)
+        {
+            int val = 0;
+
+            foreach(int num in nums)
+            {
+                val += num;
+            }
+
+            return val;
+        }
     }
 }

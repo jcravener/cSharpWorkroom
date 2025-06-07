@@ -232,6 +232,12 @@ namespace LeetCode2025
 
             var problem171 = new ProblemOnehundredSeventyone("ZY");
             problem171.RunProblem();
+
+            problem171.ColumnTitle = "AB";
+            problem171.RunProblem();
+
+            problem171.ColumnTitle = "FXSHRXW";
+            problem171.RunProblem();
         }
     }
 }
