@@ -224,8 +224,20 @@ namespace LeetCode2025
             var problem160 = new ProbOneSixty(1);
             problem160.RunProblem();
 
-            var problem168 = new ProbOneSixtyeight("AB");
+            var problem168 = new ProblemOnehundredSixtyeight(27);
             problem168.RunProblem();
+
+            var problem169 = new ProblemOnehundredSixtynine([2, 2, 1, 1, 1, 2, 2]);
+            problem169.RunProblem();
+
+            var problem171 = new ProblemOnehundredSeventyone("ZY");
+            problem171.RunProblem();
+
+            problem171.ColumnTitle = "AB";
+            problem171.RunProblem();
+
+            problem171.ColumnTitle = "FXSHRXW";
+            problem171.RunProblem();
         }
     }
 }
