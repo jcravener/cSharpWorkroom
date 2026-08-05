@@ -34,6 +34,8 @@ namespace CodingPractice2026.Examples
 
                 current = current.Next;
             }
+
+            Console.WriteLine();
         }
     }
 }
