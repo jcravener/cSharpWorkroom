@@ -14,8 +14,11 @@ string config1 = """
 var one = new Example1(config1);
 one.RunProblem();
 
-var binsearch = new ExampleBinSearch(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 4);
+var binsearch = new ExampleBinSearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 4);
 binsearch.RunProblem();
 
-var lltraverse = new ExampleLinkedList(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+var lltraverse = new ExampleLinkedList([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 lltraverse.RunProblem();
+
+var llsearch = new ExampleLinkedListSearch([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 0);
+llsearch.RunProblem();
