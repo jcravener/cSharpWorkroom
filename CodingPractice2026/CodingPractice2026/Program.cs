@@ -13,3 +13,6 @@ string config1 = """
 
 var one = new Example1(config1);
 one.RunProblem();
+
+var binsearch = new ExampleBinSearch(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 4);
+binsearch.RunProblem();
