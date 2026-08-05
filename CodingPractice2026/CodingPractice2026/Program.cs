@@ -16,3 +16,6 @@ one.RunProblem();
 
 var binsearch = new ExampleBinSearch(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }, 4);
 binsearch.RunProblem();
+
+var lltraverse = new ExampleLinkedList(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+lltraverse.RunProblem();
