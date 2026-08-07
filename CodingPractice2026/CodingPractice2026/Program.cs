@@ -28,3 +28,10 @@ lltraverse.RunProblem();
 
 var llsearch = new ExampleLinkedListSearch([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], 0);
 llsearch.RunProblem();
+
+// example BST
+var arr = Utils.RandomIntArray(10);
+var tree = new ExampleBST(arr);
+
+Console.WriteLine(String.Join(" ", arr));
+tree.RunProblem();

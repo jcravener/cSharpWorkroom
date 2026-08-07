@@ -10,12 +10,12 @@ namespace CodingPractice2026.Examples
         
         public ExampleBST(int[] random) 
         {
-            Random = randome;
+            Random = random;
         }
 
         public void RunProblem()
         {
-            TreeNode root = null;
+            TreeNode? root = null;
 
             foreach(int val in Random)
             {
@@ -23,15 +23,15 @@ namespace CodingPractice2026.Examples
             }
         }
 
-        public TreeNode Insert(TreeNode root, int value){
+        public TreeNode Insert(TreeNode? root, int value){
 
             if(root == null)
-                return new TreeNode(value)
+                return new TreeNode(value);
 
             if(value < root.Value)
-                root.Left = Insert(root.Left, value)
+                root.Left = Insert(root.Left, value);
             else
-                root.Right = Insert(root.Right, value)
+                root.Right = Insert(root.Right, value);
 
             return root;
         }

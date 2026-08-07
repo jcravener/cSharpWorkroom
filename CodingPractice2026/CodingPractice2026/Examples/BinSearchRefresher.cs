@@ -9,7 +9,7 @@ namespace CodingPractice2026.Examples
       private int BinSearch(int[] arr, int val)
       {
         // Establish the pointers
-        int start = 0
+        int start = 0;
         int end = arr.Length - 1;
 
         // search the interval
@@ -29,7 +29,7 @@ namespace CodingPractice2026.Examples
           if(val < arr[mid])
             end = mid - 1;
           else // shift start to 1 past mid to check right half
-            start = mid + 1
+            start = mid + 1;
         }
 
         return -1;
